@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String
 from backend_millenium_falcon_computer import db
 
 
+# Todo -> Corriger le modèle
 class Apps(db.Model):
     __tablename__ = "Routes"
     origin = Column(String(128))
@@ -10,12 +11,6 @@ class Apps(db.Model):
     # ORIGIN (TEXT): Name of the origin planet. Cannot be null or empty.
     # DESTINATION (TEXT): Name of the destination planet. Cannot be null or empty.
     # TRAVEL_TIME (INTEGER): Number days needed to travel from one planet to the other. Must be strictly positive.
-
-    # id = Column(Integer, primary_key=True, index=True, unique=True, autoincrement=True)
-    # name = Column(String(64), index=True, unique=True)
-    # quick_description = Column(String(128))
-    # miniature_path = Column(String(128))
-    # url = Column(String(128))
 
     # def __init__(self, name: str, quick_description: str, url: str):
     #     self.name = name

@@ -1,0 +1,7 @@
+{
+  "name": "millenium_falcon_challenge",
+  "version": "1.0.0",
+  "dependencies": {
+    "vue": "^2.6.12"
+  }
+}

@@ -1,0 +1,39 @@
+{% block head %}
+{#    {% block favicon %}#}
+{#        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon/favicon.ico') }}">#}
+{#    {% endblock %}#}
+
+    {% block scripts %}
+{#        {% assets "libs_js" %}#}
+{#            <script type="text/javascript" src="{{ ASSET_URL }}"></script>#}
+{#        {% endassets %}#}
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/vuex"></script>
+    {% endblock %}
+
+    {% block styles %}
+{#        {% assets "home_css" %}#}
+{#            <link rel="stylesheet" href="{{ ASSET_URL }}"/>#}
+{#        {% endassets %}#}
+    {% endblock %}
+{% endblock %}
+
+{% block body %}
+{#    {% block navbar %}#}
+{#        {% include "navbar.html" %}#}
+{#    {% endblock %}#}
+
+    {% block content %}
+        <div class="body-content">
+            {% block app_content %}{% endblock %}
+        </div>
+
+{#        <div class="footer-content">#}
+{#            {% block footer %}#}
+{#                {% include "footer.html" %}#}
+{#            {% endblock %}#}
+{#        </div>#}
+
+    {% endblock %}
+{% endblock %}
