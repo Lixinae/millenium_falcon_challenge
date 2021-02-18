@@ -16,14 +16,15 @@ def blueprint_registrations(current_app):
     from backend_millenium_falcon_computer.index import index_bp
     current_app.register_blueprint(index_bp)
 
+    from backend_millenium_falcon_computer.api import api_bp
+    current_app.register_blueprint(api_bp)
+
 
 #
 # # Creation de l'app
 def create_app() -> Flask:
     global db
-    from backend_millenium_falcon_computer.configuration.configuration import json_config_file_location
     configuration_app = ConfigurationApp()
-    configuration_app.init_from_json_file(json_config_file_location)
     db_path = configuration_app.full_route_db
     configuration_flask = ConfigurationFlask(db_path)
 
@@ -56,6 +57,12 @@ def create_app() -> Flask:
     #     app.logger.debug("Bootstrap init finished")
     #
     blueprint_registrations(app)
+
+    # So we can upload files
+    import secrets
+    secret = secrets.token_urlsafe(32)
+    app.secret_key = secret
+
     # app.logger.debug("Blueprint_registrations finished")
     #
     #     # add_functions_to_jinja2(app)

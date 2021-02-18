@@ -3,11 +3,13 @@ import pathlib
 import json
 
 basedir = pathlib.Path(__file__).parent.parent.parent
-web_templates_dir = os.path.join(basedir, "web_C3PO/templates")
-web_static_dir = os.path.join(basedir, "web_C3PO/static")
+web_dir = os.path.join(basedir, "web_C3PO")
+web_templates_dir = os.path.join(web_dir, "templates")
+web_static_dir = os.path.join(web_dir, "static")
+web_upload_dir = os.path.join(web_dir, "uploads")
 resource_dir = os.path.join(basedir, "resources")
 
-
+allowed_file_extensions_upload = {'json'}
 # Configuration for the app
 
 class ConfigurationApp:
@@ -49,3 +51,5 @@ class ConfigurationFlask:
     def __init__(self, db_path):
         self.SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, db_path)
         self.SQLALCHEMY_TRACK_MODIFICATIONS = True
+        self.ALLOWED_EXTENSIONS = allowed_file_extensions_upload
+        self.UPLOAD_FOLDER = web_upload_dir

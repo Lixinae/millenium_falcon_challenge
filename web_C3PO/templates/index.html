@@ -2,5 +2,27 @@
 
 {% block app_content %}
     <p> Millenium Falcon Challenge </p>
+    <div class="container">
+        <div id="app">
+            <div id="postEmpireData">
+                <div id="upload_file_url" class="hidden"> {{ url_for("api_bp.upload_file_api") }}</div>
+                <label>File
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                </label>
+                <button v-on:click="submitFile()">Submit</button>
+            </div>
+{#            <div v-if="json_answer.length">#}
+            <div>
+                <p> File data </p>
+                <p> <% upload_file_json_answer %> </p>
+            </div>
 
+            <div class="displayResults">
+                <p> Probability of getting caught : </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static',filename="scripts/base_app.js") }}"></script>
 {% endblock %}
