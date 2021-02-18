@@ -1,7 +1,4 @@
-from flask import Flask
-
 from backend_millenium_falcon_computer import create_app
-from backend_millenium_falcon_computer.configuration import configuration
 
 
 def create_server():
