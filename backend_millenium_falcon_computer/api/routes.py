@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 from backend_millenium_falcon_computer.api import api_bp_api
 from backend_millenium_falcon_computer.configuration.configuration import allowed_file_extensions_upload, web_upload_dir
-from backend_millenium_falcon_computer.odds_caught_calculator.calculator import calculate_odds_of_success
+from backend_millenium_falcon_computer.odds_success_calculator.calculator import calculate_odds_of_success
 
 
 def allowed_file(filename):
@@ -38,6 +38,7 @@ class UploadFileApi(Resource):
             with open(file_save_path, 'r') as jsonfile:
                 json_data = json.load(jsonfile)
 
+            # Todo -> Faire ça dans une thread pool
             odds_of_success = calculate_odds_of_success(json_data)
 
             return jsonify({"odds_of_success": odds_of_success,
