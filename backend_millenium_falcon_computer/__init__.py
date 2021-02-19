@@ -1,5 +1,5 @@
 from flask import Flask
-from backend_millenium_falcon_computer.database import Session, engine
+
 from backend_millenium_falcon_computer.configuration.configuration import ConfigurationFlask, ConfigurationApp, \
     web_static_dir, \
     web_templates_dir, resource_dir
@@ -19,11 +19,6 @@ def blueprint_registrations(current_app):
 
 #
 # # Creation de l'app
-def init_db():
-    from backend_millenium_falcon_computer.database import models
-    models.Base.metadata.create_all(bind=engine)
-
-
 def create_app() -> Flask:
     configuration_flask = ConfigurationFlask()
 
@@ -32,7 +27,6 @@ def create_app() -> Flask:
                         template_folder=web_templates_dir + '/')
 
     current_app.config.from_object(configuration_flask)
-    init_db()
 
     #     """
     #     Creation de l'application
