@@ -42,16 +42,36 @@ class ConfigurationApp:
             self._init_from_json(json_data)
 
     def __repr__(self):
-        return 'Autonomy: {}\n' \
-               'Departure: {}\n' \
-               'Arrival: {}\n' \
-               'Full_route_db: {}\n\n'.format(self.autonomy,
+        return 'autonomy: {}\n' \
+               'departure: {}\n' \
+               'arrival: {}\n' \
+               'full_route_db: {}\n\n'.format(self.autonomy,
                                               self.departure,
                                               self.arrival,
                                               self.full_route_db)
 
+    def to_json_data(self):
+        return {
+            'autonomy': self.autonomy,
+            'departure': self.departure,
+            'arrival': self.arrival,
+        }
 
+
+class ConfigurationAppTest(ConfigurationApp):
+    def __init__(self):
+        super().__init__()
+        self.json_config_file_location = os.path.join(resource_dir, "test_data/millenium-falcon.json")
+        self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
+        self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
+        self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
+
+
+# Use for most cases
 config = ConfigurationApp()
+
+# Only use for testing purpose
+config_test = ConfigurationAppTest()
 
 
 class ConfigurationFlask:

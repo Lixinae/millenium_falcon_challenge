@@ -45,3 +45,17 @@ class TestConfigurationApp(TestCase):
         self.assertTrue(config._json_config_file_path_folder == json_config_file_location_folder)
         self.assertTrue(
             config.full_route_db == os.path.join(resource_dir, json_config_file_location_folder, "universe.db"))
+
+    def test_to_json_data(self):
+        json_data = {
+            "autonomy": 10,
+            "departure": "Tatooine",
+            "arrival": "Endor",
+            "routes_db": "universe.db"
+        }
+        config = ConfigurationApp()
+        config._init_from_json(json_data)
+        json_data_from_config = config.to_json_data()
+        self.assertTrue(json_data_from_config["autonomy"] == 10)
+        self.assertTrue(json_data_from_config["departure"] == "Tatooine")
+        self.assertTrue(json_data_from_config["arrival"] == "Endor")
