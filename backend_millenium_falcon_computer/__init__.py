@@ -1,11 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
+from backend_millenium_falcon_computer.database import Session, engine
 from backend_millenium_falcon_computer.configuration.configuration import ConfigurationFlask, ConfigurationApp, \
     web_static_dir, \
     web_templates_dir, resource_dir
-
-db = SQLAlchemy()
 
 
 # bootstrap = Bootstrap()
@@ -22,18 +19,20 @@ def blueprint_registrations(current_app):
 
 #
 # # Creation de l'app
+def init_db():
+    from backend_millenium_falcon_computer.database import models
+    models.Base.metadata.create_all(bind=engine)
+
+
 def create_app() -> Flask:
-    global db
-    configuration_app = ConfigurationApp()
-    db_path = configuration_app.full_route_db
-    configuration_flask = ConfigurationFlask(db_path)
+    configuration_flask = ConfigurationFlask()
 
-    app = Flask(__name__,
-                static_folder=web_static_dir + '/',
-                template_folder=web_templates_dir + '/')
+    current_app = Flask(__name__,
+                        static_folder=web_static_dir + '/',
+                        template_folder=web_templates_dir + '/')
 
-    app.config.from_object(configuration_flask)
-    db.init_app(app)
+    current_app.config.from_object(configuration_flask)
+    init_db()
 
     #     """
     #     Creation de l'application
@@ -43,25 +42,20 @@ def create_app() -> Flask:
     #     app.logger.debug("Logging set up finished ")
     #     db.init_app(app)
     #
-    app.app_context().push()  # this does the binding
+    current_app.app_context().push()  # this does the binding
     #
     #     # We need those import for the metadata for the database
-    #     # Todo -> Here add import for each model for the database
-    #     import application.apps.app_model
-    #     import application.portfolio.project_model
-    import backend_millenium_falcon_computer.database.models
-    db.create_all()
     #     app.logger.debug("Database init finished")
     #
     #     bootstrap.init_app(app)
     #     app.logger.debug("Bootstrap init finished")
     #
-    blueprint_registrations(app)
+    blueprint_registrations(current_app)
 
     # So we can upload files
     import secrets
     secret = secrets.token_urlsafe(32)
-    app.secret_key = secret
+    current_app.secret_key = secret
 
     # app.logger.debug("Blueprint_registrations finished")
     #
@@ -79,4 +73,7 @@ def create_app() -> Flask:
     #     #     app.logger.debug("Init of app finished")
     #     # if config_class == DevelopmentConfig:
     #     #     set_all_logger_to_level(logging.DEBUG)
-    return app
+    return current_app
+
+
+app = create_app()
