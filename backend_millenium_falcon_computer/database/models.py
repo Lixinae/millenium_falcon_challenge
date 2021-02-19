@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String
-from backend_millenium_falcon_computer import db
+from backend_millenium_falcon_computer.database import Base
 
 
-class Routes(db.Model):
+class Routes(Base):
     __tablename__ = "routes"
     origin = Column(String(128), primary_key=True)
     destination = Column(String(128), primary_key=True)
