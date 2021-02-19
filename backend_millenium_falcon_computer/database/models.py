@@ -1,7 +1,11 @@
+from flask import jsonify
 from sqlalchemy import Column, Integer, String
 from backend_millenium_falcon_computer.database import Base
 
 
+# We should not need to put everything with primary keys, but since we have no ID or unique things,
+# SQL alchemy wants a primary key and it
+#
 class Routes(Base):
     __tablename__ = "routes"
     origin = Column(String(128), primary_key=True)
@@ -16,14 +20,13 @@ class Routes(Base):
     def __repr__(self):
         return 'Origin: {}\n' \
                'Destination: {}\n' \
-               'travel_time: {}\n\n'.format(self.origin,
-                                            self.destination,
-                                            self.travel_time, )
+               'travel_time: {}\n'.format(self.origin,
+                                          self.destination,
+                                          self.travel_time, )
 
     #
-    # def to_dict(self):
-    #     return jsonify({"Id": self.id,
-    #                     'name': self.name,
-    #                     'quick_description': self.quick_description,
-    #                     'miniature': url_for('static', filename=self.miniature_path),
-    #                     'url': url_for(self.url)})
+    def to_json(self):
+        return {"Origin": self.origin,
+                'Destination': self.destination,
+                'travel_time': self.travel_time,
+                }
