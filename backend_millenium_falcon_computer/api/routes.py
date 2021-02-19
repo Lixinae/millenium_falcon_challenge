@@ -6,10 +6,8 @@ from flask_restx import Resource
 from werkzeug.utils import secure_filename
 
 from backend_millenium_falcon_computer.api import api_bp_api
-
-# Todo -> Change the name to something correct
-# Todo -> Add new classes for each api routes : Envoie de fichier / recupération des informations etc....
 from backend_millenium_falcon_computer.configuration.configuration import allowed_file_extensions_upload, web_upload_dir
+from backend_millenium_falcon_computer.odds_caught_calculator.calculator import calculate_odds_of_success
 
 
 def allowed_file(filename):
@@ -17,7 +15,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in allowed_file_extensions_upload
 
 
-@api_bp_api.route("/upload_empire")
+@api_bp_api.route("/upload_and_compute")
 class UploadFileApi(Resource):
     def get(self):
         return redirect(url_for('index_bp.index'))
@@ -39,7 +37,24 @@ class UploadFileApi(Resource):
             file.save(file_save_path)
             with open(file_save_path, 'r') as jsonfile:
                 json_data = json.load(jsonfile)
-                print(json_data)
-                # Todo -> Voir si on compute ici
-            return json_data
 
+            odds_of_success = calculate_odds_of_success(json_data)
+
+            return jsonify({"odds_of_success": odds_of_success,
+                            "upload_file_json_answer": json_data})
+
+# @api_bp_api.route("/askToComputeData")
+# class ComputeDataApi(Resource):
+#     def get(self):
+#         return redirect(url_for('index_bp.index'))
+#
+#     def post(self):
+#         computed_data = 0
+#         if not os.path.exists(file_save_path):
+#             return jsonify("Error, no file uploaded")
+#
+#
+#         computed_data = compute_data()
+#         # Todo -> Do task
+#
+#         return computed_data

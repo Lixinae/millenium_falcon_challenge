@@ -4,7 +4,7 @@ const base_app_vue = new Vue({
     data: {
         upload_file: "",
         upload_file_json_answer:{},
-        calculated_probability_of_caught:-1
+        odds_of_success:0
     },
     methods: {
         submitFile() {
@@ -19,17 +19,19 @@ const base_app_vue = new Vue({
                     }
                 }
             ).then(function (response) {
-                self.upload_file_json_answer = response.data
+                self.upload_file_json_answer = response.data.upload_file_json_answer;
+                self.odds_of_success = response.data.odds_of_success;
+                console.log(self.odds_of_success)
                 console.log('SUCCESS!!');
             }).catch(function (response) {
-                console.log(response)
+                //console.log(response)
                 console.log('FAILURE!!');
             });
         },
         handleFileUpload() {
             this.upload_file = this.$refs.file.files[0];
             console.log('>>>> 1st element in files array >>>> ', this.upload_file);
-        }
+        },
     },
     delimiters: ["<%", "%>"] // delimiters specifique pour eviter les conflits avec jinja
 });
