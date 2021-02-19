@@ -10,6 +10,8 @@ web_upload_dir = os.path.join(web_dir, "uploads")
 resource_dir = os.path.join(basedir, "resources")
 
 allowed_file_extensions_upload = {'json'}
+
+
 # Configuration for the app
 
 class ConfigurationApp:
@@ -22,6 +24,7 @@ class ConfigurationApp:
         self.json_config_file_location = os.path.join(resource_dir, "configuration/millenium-falcon.json")
         self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
+        self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
 
     def _init_from_json(self, json_data):
         # Todo -> Add security to check if values exist or not
@@ -30,11 +33,12 @@ class ConfigurationApp:
         self.arrival = json_data["arrival"]
         self._routes_db = json_data["routes_db"]
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
+        self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
 
-    def init_from_json_file(self, location):
-        with open(location, 'r') as jsonfile:
+    def init_from_json_file(self, json_file_location):
+        with open(json_file_location, 'r') as jsonfile:
             json_data = json.load(jsonfile)
-            self._json_config_file_path_folder = os.path.dirname(location)
+            self._json_config_file_path_folder = os.path.dirname(json_file_location)
             self._init_from_json(json_data)
 
     def __repr__(self):
@@ -47,9 +51,10 @@ class ConfigurationApp:
                                               self.full_route_db)
 
 
+config = ConfigurationApp()
+
+
 class ConfigurationFlask:
-    def __init__(self, db_path):
-        self.SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, db_path)
-        self.SQLALCHEMY_TRACK_MODIFICATIONS = True
+    def __init__(self):
         self.ALLOWED_EXTENSIONS = allowed_file_extensions_upload
         self.UPLOAD_FOLDER = web_upload_dir
