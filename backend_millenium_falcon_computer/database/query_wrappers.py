@@ -14,5 +14,9 @@ def query_specific_destination(destination_str: str):
     return session.query(Routes).filter_by(destination=destination_str).all()
 
 
+def query_specific_origin_destination(origin_str: str, destination_str: str):
+    return session.query(Routes).filter_by(origin=origin_str).filter_by(destination=destination_str).all()
+
+
 def query_specific_travel_time(travel_time: int):
     return session.query(Routes).filter_by(travel_time=travel_time).all()

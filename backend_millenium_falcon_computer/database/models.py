@@ -18,15 +18,13 @@ class Routes(Base):
 
     #
     def __repr__(self):
-        return 'Origin: {}\n' \
-               'Destination: {}\n' \
-               'travel_time: {}\n'.format(self.origin,
-                                          self.destination,
-                                          self.travel_time, )
+        return '{\norigin: \"'+self.origin+'\",\n' + \
+               'destination: \"'+self.destination+'\",\n' + \
+               'travel_time: '+str(self.travel_time)+'\n}\n'
 
     #
     def to_json(self):
-        return {"Origin": self.origin,
-                'Destination': self.destination,
+        return {"origin": self.origin,
+                'destination': self.destination,
                 'travel_time': self.travel_time,
                 }
