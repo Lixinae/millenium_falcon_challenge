@@ -36,13 +36,13 @@ class UploadFileApi(Resource):
             file_save_path = os.path.join(web_upload_dir, filename)
             file.save(file_save_path)
             with open(file_save_path, 'r') as jsonfile:
-                json_data = json.load(jsonfile)
+                json_data_empire = json.load(jsonfile)
 
             # Todo -> Faire ça dans une thread pool
-            odds_of_success = calculate_odds_of_success(json_data)
+            odds_of_success = calculate_odds_of_success(json_data_empire)
 
             return jsonify({"odds_of_success": odds_of_success,
-                            "upload_file_json_answer": json_data})
+                            "upload_file_json_answer": json_data_empire})
 
 # @api_bp_api.route("/askToComputeData")
 # class ComputeDataApi(Resource):
