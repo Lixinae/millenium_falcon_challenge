@@ -1,7 +1,8 @@
 import json
+import os
 import sys
 
-from backend_millenium_falcon_computer.configuration.configuration import config
+from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir
 from backend_millenium_falcon_computer.odds_success_calculator import calculator
 
 
@@ -14,11 +15,9 @@ def read_json_file(empire_json_file_: json):
 # Todo -> Cli
 # Prend 2 fichier en entrée (les 2 json) give-me-the-odds example1/millenium-falcon.json example1/empire.json
 if __name__ == '__main__':
-    argv = sys.argv[1]
-
     # Todo -> Remplacer par arguments ligne de commande
-    millenium_json_config_file = "example1/millenium-falcon.json"
-    empire_json_file = "example1/empire.json"
+    millenium_json_config_file = os.path.join(resource_dir, "example3/millenium-falcon.json")
+    empire_json_file = os.path.join(resource_dir, "example3/empire.json")
 
     config.init_from_json_file(millenium_json_config_file)
     json_empire = read_json_file(empire_json_file)
