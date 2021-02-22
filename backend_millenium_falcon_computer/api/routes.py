@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 
 from backend_millenium_falcon_computer.api import api_bp_api
 from backend_millenium_falcon_computer.configuration.configuration import allowed_file_extensions_upload, web_upload_dir
-from backend_millenium_falcon_computer.odds_success_calculator.calculator import calculate_odds_of_success
+from backend_millenium_falcon_computer.odds_success_calculator.calculator import calculate_best_odds_of_success
 
 
 def allowed_file(filename):
@@ -39,23 +39,13 @@ class UploadFileApi(Resource):
                 json_data_empire = json.load(jsonfile)
 
             # Todo -> Faire ça dans une thread pool
-            odds_of_success = calculate_odds_of_success(json_data_empire)
-
+            odds_of_success_info = calculate_best_odds_of_success(json_data_empire)
+            odds_of_success = odds_of_success_info["odds_of_success"]
+            # trajectory = odds_of_success_info["traje"]
+            trajectory = odds_of_success_info["trajectory"]
+            refueled_on = odds_of_success_info["refueled_on"]
             return jsonify({"odds_of_success": odds_of_success,
-                            "upload_file_json_answer": json_data_empire})
-
-# @api_bp_api.route("/askToComputeData")
-# class ComputeDataApi(Resource):
-#     def get(self):
-#         return redirect(url_for('index_bp.index'))
-#
-#     def post(self):
-#         computed_data = 0
-#         if not os.path.exists(file_save_path):
-#             return jsonify("Error, no file uploaded")
-#
-#
-#         computed_data = compute_data()
-#         # Todo -> Do task
-#
-#         return computed_data
+                            "upload_file_json_answer": json_data_empire,
+                            "trajectory:": trajectory,
+                            "refueled_on": refueled_on
+                            })

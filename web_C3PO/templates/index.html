@@ -5,20 +5,25 @@
     <div class="container">
         <div id="app">
             <div id="postEmpireData">
-                <div id="upload_file_url" class="hidden"> {{ url_for("api_bp.upload_file_api") }}</div>
-                <label>File
-                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-                </label>
-                <button v-on:click="submitFile()">upload file and compute data</button>
+                <form @submit.prevent="submit_file()"
+                      action="{{ url_for("api_bp.upload_file_api") }}"
+                      method="post"
+                      id="submit_file_and_comput_data_form"
+                >
+                    <label>File
+                        <input type="file" id="file" ref="file" v-on:change="handle_file_upload()" required/>
+                    </label>
+                    <button type="submit">upload file and compute data</button>
+                </form>
+
             </div>
-{#            <div v-if="json_answer.length">#}
             <div>
                 <p> File data </p>
-                <p> <% upload_file_json_answer %> </p>
+                <p> <% answer_data.upload_file_json_answer %> </p>
             </div>
 
             <div class="displayResults">
-                <p> Probability of success: </p>
+                <p> Probability of success: <% answer_data.odds_of_success  %>% </p>
             </div>
         </div>
 
