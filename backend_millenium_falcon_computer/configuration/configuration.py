@@ -17,9 +17,9 @@ allowed_file_extensions_upload = {'json'}
 class ConfigurationApp:
 
     def __init__(self):
-        self.autonomy = 6,
-        self.departure = "Tatooine",
-        self.arrival = "Endor",
+        self.autonomy = 6
+        self.departure = "Tatooine"
+        self.arrival = "Endor"
         self._routes_db = "universe.db"
         self.json_config_file_location = os.path.join(resource_dir, "configuration/millenium-falcon.json")
         self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
@@ -69,6 +69,7 @@ class ConfigurationAppTest(ConfigurationApp):
 
 # Use for most cases
 config = ConfigurationApp()
+config.init_from_json_file(os.path.join(resource_dir, "configuration/millenium-falcon.json"))
 
 # Only use for testing purpose
 config_test = ConfigurationAppTest()
