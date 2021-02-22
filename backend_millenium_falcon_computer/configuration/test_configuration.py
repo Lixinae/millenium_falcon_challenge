@@ -1,7 +1,8 @@
 import os
 from unittest import TestCase
 
-from backend_millenium_falcon_computer.configuration.configuration import ConfigurationApp, resource_dir
+from backend_millenium_falcon_computer.configuration.configuration import ConfigurationApp, resource_dir, \
+    ConfigurationAppTest
 
 
 class TestConfigurationApp(TestCase):
@@ -53,7 +54,7 @@ class TestConfigurationApp(TestCase):
             "arrival": "Endor",
             "routes_db": "universe.db"
         }
-        config = ConfigurationApp()
+        config = ConfigurationAppTest()
         config._init_from_json(json_data)
         json_data_from_config = config.to_json_data()
         self.assertTrue(json_data_from_config["autonomy"] == 10)
