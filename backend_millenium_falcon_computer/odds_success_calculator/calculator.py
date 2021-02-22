@@ -97,38 +97,74 @@ def calculate_odds_of_success(json_from_empire: json, config_informations=config
 def calculte_odds(json_config: json, json_from_db: json, json_from_empire: json) -> int:
     # Todo -> calculte_odds
     trajectories = calculate_all_possible_trajectories(json_config, json_from_db, json_from_empire)
-    initial_fuel = json_config["autonomy"][0]
-    arrival = json_config["arrival"][0]
+    initial_fuel = json_config["autonomy"]
+    arrival = json_config["arrival"]
     empire_countdown = json_from_empire["countdown"]
     bounty_hunters = json_from_empire["bounty_hunters"]
-    trajectories_times = []
+    print(bounty_hunters)
+    trajectories_time_and_caught_proba = []
     for trajectory in trajectories:
-        total_travel_time = 0
-        current_fuel = initial_fuel
-        caught_proba = 0
-        for i in range(0, len(trajectory) - 1):
-            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1])
-            if initial_fuel < travel_between:
-                break
-            if trajectory[i] == arrival:
-                break
-            predicted_fuel = current_fuel - travel_between
-            if predicted_fuel < 0:  # We need to refuel
-                total_travel_time += 1
-                current_fuel = initial_fuel
-            current_fuel -= travel_between
-            total_travel_time += travel_between
-        trajectory_total_time = {
-            "trajectory": trajectory,
-            "total_time": total_travel_time,
-            "caught_proba": caught_proba
-        }
-        trajectories_times.append(trajectory_total_time)
-        print(total_travel_time)
-    print(trajectories_times)
+        wait_time = 0
+        total_travel_time = compute_trajectory_time_caught(arrival,
+                                                           bounty_hunters,
+                                                           initial_fuel,
+                                                           trajectories_time_and_caught_proba,
+                                                           trajectory,
+                                                           wait_time)
+
+        if total_travel_time < empire_countdown:
+            wait_time = 1
+            total_travel_time = compute_trajectory_time_caught(arrival,
+                                                               bounty_hunters,
+                                                               initial_fuel,
+                                                               trajectories_time_and_caught_proba,
+                                                               trajectory,
+                                                               wait_time)
+    print(trajectories_time_and_caught_proba)
     # S'il n'y a aucun chemin dans les temps on renvoie 0
-    if not any([x["total_time"] <= empire_countdown for x in trajectories_times]):
+    filtered_time = [x for x in trajectories_time_and_caught_proba if x["total_time"] <= empire_countdown]
+    if not filtered_time:
         return 0
+
+    print(filtered_time)
+
+
+def compute_trajectory_time_caught(arrival, bounty_hunters, initial_fuel, trajectories_times, trajectory,wait_time):
+    total_travel_time = 0
+    current_fuel = initial_fuel
+    caught_proba = 0
+    count_time_encounter_bounty_hunters = 0
+    for i in range(0, len(trajectory) - 1):
+        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1])
+        if initial_fuel < travel_between:  # On a pas assez de carburant pour aller sur la 1ere planète
+            break
+        if trajectory[i] == arrival:  # On est arrivé à la fin du trajet
+            break
+        current_planet = {
+            "planet": trajectory[i],
+            "day": total_travel_time
+        }
+        if current_planet in bounty_hunters:
+            count_time_encounter_bounty_hunters += 1
+        predicted_fuel = current_fuel - travel_between
+        if predicted_fuel < 0:  # On a besoin de refuel
+            total_travel_time += 1
+            current_fuel = initial_fuel
+
+        current_fuel -= travel_between
+        total_travel_time += travel_between
+        total_travel_time += wait_time
+    for i in range(0, count_time_encounter_bounty_hunters + 1):
+        num = pow(9, i)
+        denom = pow(10, i + 1)
+        caught_proba += num / denom
+    trajectory_total_time = {
+        "trajectory": trajectory,
+        "total_time": total_travel_time,
+        "caught_proba": caught_proba
+    }
+    trajectories_times.append(trajectory_total_time)
+    return total_travel_time
 
 
 def get_travel_time_between(origin, destination):
@@ -140,8 +176,8 @@ def get_travel_time_between(origin, destination):
 
 
 def calculate_all_possible_trajectories(json_config: json, json_from_db: json, json_from_empire: json) -> List:
-    departure = json_config["departure"][0]
-    arrival = json_config["arrival"][0]
+    departure = json_config["departure"]
+    arrival = json_config["arrival"]
     print(json_from_db)
     # planets = transform_json_to_usable_data(json_from_db)
     # print(planets)
