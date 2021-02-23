@@ -26,12 +26,18 @@ class ConfigurationApp:
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
         self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
 
+        self.init_from_json_file(self.json_config_file_location)
+
     def _init_from_json(self, json_data):
-        # Todo -> Add security to check if values exist or not
-        self.autonomy = json_data["autonomy"]
-        self.departure = json_data["departure"]
-        self.arrival = json_data["arrival"]
-        self._routes_db = json_data["routes_db"]
+        if "autonomy" in json_data:
+            self.autonomy = json_data["autonomy"]
+        if "departure" in json_data:
+            self.departure = json_data["departure"]
+        if "arrival" in json_data:
+            self.arrival = json_data["arrival"]
+        if "routes_db" in json_data:
+            self._routes_db = json_data["routes_db"]
+
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
         self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
 
@@ -65,11 +71,11 @@ class ConfigurationAppTest(ConfigurationApp):
         self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
         self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
+        self.init_from_json_file(self.json_config_file_location)
 
 
 # Use for most cases
 config = ConfigurationApp()
-config.init_from_json_file(os.path.join(resource_dir, "configuration/millenium-falcon.json"))
 
 # Only use for testing purpose
 config_test = ConfigurationAppTest()
