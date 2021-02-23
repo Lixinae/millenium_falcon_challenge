@@ -16,9 +16,18 @@ def read_json_file(empire_json_file_: json):
 # Prend 2 fichier en entrée (les 2 json) give-me-the-odds example1/millenium-falcon.json example1/empire.json
 if __name__ == '__main__':
 
-    # Todo -> Remplacer par arguments ligne de commande
-    millenium_json_config_file = os.path.join(resource_dir, "example4/millenium-falcon.json")
-    empire_json_file = os.path.join(resource_dir, "example2/empire.json")
+    # Default values
+    millenium_json_config_file = os.path.join(resource_dir, "example1/millenium-falcon.json")
+    empire_json_file = os.path.join(resource_dir, "example1/empire.json")
+
+    if len(sys.argv) == 3:
+        millenium_json_config_file = sys.argv[1]
+        empire_json_file = sys.argv[2]
+    else:
+        print("No files provided in input, it should be in the format:")
+        print("give-me-the-odds example1/millenium-falcon.json example1/empire.json")
+        print("Now using the default values provided")
+        print("Default files are: \n" + millenium_json_config_file + "\n" + empire_json_file)
 
     config.init_from_json_file(millenium_json_config_file)
     json_empire = read_json_file(empire_json_file)
