@@ -22,7 +22,6 @@ def init_db():
     :return:
     """
     global engine, Session, Base, session
-    print(config.sql_alchemy_database_url)
     engine = create_engine(config.sql_alchemy_database_url, connect_args={"check_same_thread": False})
     Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     Base = declarative_base()
