@@ -1,3 +1,4 @@
+import concurrent.futures
 import json
 import os
 
@@ -38,14 +39,23 @@ class UploadFileApi(Resource):
             with open(file_save_path, 'r') as jsonfile:
                 json_data_empire = json.load(jsonfile)
 
-            # Todo -> Faire ça dans une thread pool
-            odds_of_success_info = calculate_best_odds_of_success(json_data_empire)
-            odds_of_success = odds_of_success_info["odds_of_success"]
-            # trajectory = odds_of_success_info["traje"]
-            trajectory = odds_of_success_info["trajectory"]
-            refueled_on = odds_of_success_info["refueled_on"]
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                future = executor.submit(calculate_best_odds_of_success, json_data_empire)
+                odds_of_success_info = future.result()
+
+            odds_of_success = 0
+            trajectory = []
+            refueled_on = []
+            if odds_of_success_info:
+                if "odds_of_success" in odds_of_success_info:
+                    odds_of_success = odds_of_success_info["odds_of_success"]
+                if "trajectory" in odds_of_success_info:
+                    trajectory = odds_of_success_info["trajectory"]
+                if "refueled_on" in odds_of_success_info:
+                    refueled_on = odds_of_success_info["refueled_on"]
+
             return jsonify({"odds_of_success": odds_of_success,
                             "upload_file_json_answer": json_data_empire,
-                            "trajectory:": trajectory,
+                            "trajectory": trajectory,
                             "refueled_on": refueled_on
                             })
