@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <p> Millenium Falcon Challenge </p>
+
     <div class="container">
         <div id="app">
-            <div id="postEmpireData">
+            <p id="app_title"> Millenium Falcon Challenge </p>
+            <div id="post_empire_data">
                 <form @submit.prevent="submit_file()"
                       action="{{ url_for("api_bp.upload_file_api") }}"
                       method="post"
@@ -17,13 +18,59 @@
                 </form>
 
             </div>
-            <div>
+            <div class="file_data_display">
                 <p> File data </p>
                 <p> <% answer_data.upload_file_json_answer %> </p>
             </div>
 
-            <div class="displayResults">
-                <p> Probability of success: <% answer_data.odds_of_success  %>% </p>
+            <div class="display_results">
+
+                <div class="trajectory_display">
+                    {#                    <p> Trajectory used : <% answer_data.trajectory %></p>#}
+                    <p> Trajectory :</p>
+                    <div v-if="answer_data.trajectory.length === 0">
+                        <p> No possible trajectories found</p>
+                    </div>
+                    <div v-else>
+                        <div class="trajectory_display_planets"></div>
+                    </div>
+                    <div v-if="answer_data.refueled_on.length === 0">
+                        No refuel needed
+                    </div>
+                    <div v-else>
+                        <p> Stops: <% answer_data.refueled_on %></p>
+                    </div>
+
+
+                </div>
+                <div class="success_display">
+                    <p> Chances of success: </p>
+                    <p v-if="answer_data.odds_of_success >= 0" class="success_chances"><% answer_data.odds_of_success
+                        %>% </p>
+                    <div v-if="answer_data.odds_of_success === 0">
+                        <img class="c3po_gif"
+                             src="{{ url_for('static',filename="gif/c3po_we_are_doomed.gif") }}"
+                             alt="c3po_we_are_doomed gif">
+                    </div>
+                    <div v-else-if="answer_data.odds_of_success > 0 && answer_data.odds_of_success < 50">
+                        <img class="c3po_gif"
+                             src="{{ url_for('static',filename="gif/c3po_this_is_madness.gif") }}"
+                             alt="c3po_this_is_madness gif">
+                    </div>
+                    <div v-else-if="answer_data.odds_of_success >= 50 && answer_data.odds_of_success < 100">
+                        <img class="c3po_gif"
+                             src="{{ url_for('static',filename="gif/i_have_bad_feeling_about_this.gif") }}"
+                             alt="i_have_bad_feeling_about_this gif">
+                    </div>
+                    <div v-else-if="answer_data.odds_of_success === 100">
+                        <img class="c3po_gif"
+                             src="{{ url_for('static',filename="gif/c3po_wonderful.gif") }}"
+                             alt="c3po_wonderful gif">
+                    </div>
+                    <div v-else>
+
+                    </div>
+                </div>
             </div>
         </div>
 

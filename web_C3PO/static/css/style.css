@@ -2,3 +2,20 @@
 .hidden {
     display: none !important;
 }
+
+#app{
+    text-align: center;
+}
+
+.trajectory_display_planets{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.success_chances{
+    color: red;
+    background: aqua;
+}

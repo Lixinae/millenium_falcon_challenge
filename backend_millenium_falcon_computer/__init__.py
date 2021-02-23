@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_jsglue import JSGlue
 
 from backend_millenium_falcon_computer.configuration.configuration import ConfigurationFlask, ConfigurationApp, \
     web_static_dir, \
@@ -48,6 +49,9 @@ def create_app() -> Flask:
     # We need to do
     secret = secrets.token_urlsafe(32)
     current_app.secret_key = secret
+
+    jsglue = JSGlue()
+    jsglue.init_app(current_app)
     return current_app
 
 
