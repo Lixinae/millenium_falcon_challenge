@@ -3,6 +3,7 @@ import unittest
 
 from backend_millenium_falcon_computer import resource_dir
 from backend_millenium_falcon_computer.configuration.configuration import config
+from backend_millenium_falcon_computer.database import init_db
 from backend_millenium_falcon_computer.odds_success_calculator import calculator
 from backend_millenium_falcon_computer.command_line_interface.give_me_the_odds import read_json_file
 
@@ -12,6 +13,7 @@ class GiveMeTheOddsTests(unittest.TestCase):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example1/millenium-falcon.json")
         empire_json_file = os.path.join(self.test_data_folder, "example1/empire.json")
         config.init_from_json_file(millenium_json_config_file)
+        init_db()
         json_empire = read_json_file(empire_json_file)
         odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
         odds_of_success = 0
@@ -25,6 +27,7 @@ class GiveMeTheOddsTests(unittest.TestCase):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example2/millenium-falcon.json")
         empire_json_file = os.path.join(self.test_data_folder, "example2/empire.json")
         config.init_from_json_file(millenium_json_config_file)
+        init_db()
         json_empire = read_json_file(empire_json_file)
         odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
         odds_of_success = 0
@@ -38,6 +41,7 @@ class GiveMeTheOddsTests(unittest.TestCase):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example3/millenium-falcon.json")
         empire_json_file = os.path.join(self.test_data_folder, "example3/empire.json")
         config.init_from_json_file(millenium_json_config_file)
+        init_db()
         json_empire = read_json_file(empire_json_file)
         odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
         odds_of_success = 0
@@ -51,6 +55,7 @@ class GiveMeTheOddsTests(unittest.TestCase):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example4/millenium-falcon.json")
         empire_json_file = os.path.join(self.test_data_folder, "example4/empire.json")
         config.init_from_json_file(millenium_json_config_file)
+        init_db()
         json_empire = read_json_file(empire_json_file)
         odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
         odds_of_success = 0
