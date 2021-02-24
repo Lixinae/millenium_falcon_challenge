@@ -5,28 +5,19 @@ from sqlalchemy.orm import sessionmaker
 from backend_millenium_falcon_computer.configuration.configuration import config
 
 # Default values
-engine = create_engine(config.sql_alchemy_database_url, connect_args={"check_same_thread": False})
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Session = sessionmaker(autocommit=False, autoflush=False)
 Base = declarative_base()
-session = Session()
-
-# Initialisation des tables de la BDD
-# On laisse le from ici pour eviter les import circulaire
-from backend_millenium_falcon_computer.database import models
-models.Base.metadata.create_all(bind=engine)
 
 
 def init_db():
     """
-    We need to run this after the initialisation of the configuration to override the default values
+    On doit lancer ça après l'initialisation de la configuration pour
     :return:
     """
-    global engine, Session, Base, session
+    global Session, Base
     engine = create_engine(config.sql_alchemy_database_url, connect_args={"check_same_thread": False})
-    Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    Session.configure(bind=engine)
     Base = declarative_base()
-    session = Session()
+
     # Initialisation des tables de la BDD
-    # On laisse le from ici pour eviter les import circulaire
-    from backend_millenium_falcon_computer.database import models
-    models.Base.metadata.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
