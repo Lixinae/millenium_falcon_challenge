@@ -22,11 +22,10 @@ class ConfigurationApp:
         self.arrival = "Endor"
         self._routes_db = "universe.db"
         self.json_config_file_location = os.path.join(resource_dir, "configuration/millenium-falcon.json")
+        self.init_from_json_file(self.json_config_file_location)
         self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
         self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
-
-        self.init_from_json_file(self.json_config_file_location)
 
     def _init_from_json(self, json_data):
         if "autonomy" in json_data:
@@ -67,11 +66,11 @@ class ConfigurationApp:
 class ConfigurationAppTest(ConfigurationApp):
     def __init__(self):
         super().__init__()
-        self.json_config_file_location = os.path.join(resource_dir, "test_data/millenium-falcon.json")
+        self.json_config_file_location = os.path.join(resource_dir, "test_data/example1/millenium-falcon.json")
         self._json_config_file_path_folder = os.path.dirname(self.json_config_file_location)
+        self.init_from_json_file(self.json_config_file_location)
         self.full_route_db = os.path.join(resource_dir, self._json_config_file_path_folder, self._routes_db)
         self.sql_alchemy_database_url = 'sqlite:///' + os.path.join(basedir, self.full_route_db)
-        self.init_from_json_file(self.json_config_file_location)
 
 
 # Use for most cases
