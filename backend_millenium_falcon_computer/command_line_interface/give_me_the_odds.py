@@ -3,6 +3,8 @@ import os
 import sys
 
 from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir
+from backend_millenium_falcon_computer.database import init_db
+from backend_millenium_falcon_computer.database.query_wrappers import QueryWrappers
 from backend_millenium_falcon_computer.odds_success_calculator import calculator
 
 
@@ -17,8 +19,9 @@ def read_json_file(empire_json_file_: json):
 if __name__ == '__main__':
 
     # Default values
-    millenium_json_config_file = os.path.join(resource_dir, "example1/millenium-falcon.json")
-    empire_json_file = os.path.join(resource_dir, "example1/empire.json")
+    millenium_json_config_file = os.path.join(resource_dir, "test_data/anything_can_go/millenium-falcon.json")
+    # millenium_json_config_file = os.path.join(resource_dir, "test_data/example4/millenium-falcon.json")
+    empire_json_file = os.path.join(resource_dir, "test_data/anything_can_go/empire.json")
 
     if len(sys.argv) == 3:
         millenium_json_config_file = sys.argv[1]
@@ -31,8 +34,13 @@ if __name__ == '__main__':
 
     config.init_from_json_file(millenium_json_config_file)
     json_empire = read_json_file(empire_json_file)
+    init_db()
+    import time
 
+    start = time.time()
     odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
+    end = time.time()
+    print(end - start)
     if not odds_of_success_info:
         print(0)
     else:

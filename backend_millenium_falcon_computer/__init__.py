@@ -6,6 +6,8 @@ from backend_millenium_falcon_computer.configuration.configuration import Config
     web_templates_dir, resource_dir
 import secrets
 
+from backend_millenium_falcon_computer.database import init_db
+
 
 def blueprint_registrations(current_app):
     """
@@ -29,9 +31,6 @@ def create_app() -> Flask:
     # Ici on peut rajouter une initialisation de la configuration par un fichier json,
     # Si l'on en veut un autre que celui par defaut
     # config_app.init_from_json_file(json_file)
-    # Puis rajouter
-    # init_db()
-    # Pour override les valeurs par défauts
 
     configuration_flask = ConfigurationFlask()
 
@@ -50,6 +49,7 @@ def create_app() -> Flask:
     secret = secrets.token_urlsafe(32)
     current_app.secret_key = secret
 
+    init_db()
     jsglue = JSGlue()
     jsglue.init_app(current_app)
     return current_app
