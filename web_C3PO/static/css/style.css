@@ -1,21 +1,69 @@
+@font-face {
+    font-family: "star_wars_font";
+    /*src: url("/static/css/fonts/Starjedi.woff") format("woff");*/
+    src: url("/static/css/fonts/Starjhol.woff") format("woff");
+}
 
 .hidden {
     display: none !important;
 }
 
-#app{
+body{
+    background-image: url("/static/img/star_wars_background.jpg");
+}
+
+#app {
     text-align: center;
 }
 
-.trajectory_display_planets{
+.trajectory_display_planets {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     flex: 1;
+    align-items: center;
 }
 
-.success_chances{
-    color: red;
-    background: aqua;
+.fig_caption{
+    color: #c8c8c8;
+}
+
+.success_chances {
+    color: #C8C8C8;
+}
+
+.arrow_img {
+    height: 64px;
+}
+
+#app_title {
+    font-size: calc(50px);
+    font-family: 'star_wars_font', serif;
+    text-shadow: 0 0 0.15em #FFFFFF;
+    color: gold;
+}
+
+#app_title_challenge {
+    font-size: calc(75px);
+    font-family: 'star_wars_font', serif;
+    text-shadow: 0 0 0.15em #FFFFFF;
+    color: gold;
+}
+
+.app_data {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    flex: 1;
+    align-items: center;
+}
+
+.label_empire_data{
+    color: #C8C8C8;
+}
+
+.file_data_display{
+    color: #C8C8C8;
 }

@@ -4,72 +4,89 @@
 
     <div class="container">
         <div id="app">
-            <p id="app_title"> Millenium Falcon Challenge </p>
-            <div id="post_empire_data">
-                <form @submit.prevent="submit_file()"
-                      action="{{ url_for("api_bp.upload_file_api") }}"
-                      method="post"
-                      id="submit_file_and_comput_data_form"
-                >
-                    <label>File
-                        <input type="file" id="file" ref="file" v-on:change="handle_file_upload()" required/>
-                    </label>
-                    <button type="submit">upload file and compute data</button>
-                </form>
+            <div id="app_title"> Millenium Falcon</div>
+            <div id="app_title_challenge"> Challenge</div>
+            <div class="app_data">
+                <div class="app_data_form_file_info">
 
-            </div>
-            <div class="file_data_display">
-                <p> File data </p>
-                <p> <% answer_data.upload_file_json_answer %> </p>
-            </div>
+                    <div id="post_empire_data">
+                        <form @submit.prevent="submit_file()"
+                              action="{{ url_for("api_bp.upload_file_api") }}"
+                              method="post"
+                              id="submit_file_and_comput_data_form"
+                        >
+                            <label class="label_empire_data"> Empire data File
+                                <input type="file" id="file" ref="file" v-on:change="handle_file_upload()" required/>
+                            </label>
+                            <button :disabled="upload_disabled" type="submit">upload file and compute data</button>
+                        </form>
 
-            <div class="display_results">
-
-                <div class="trajectory_display">
-                    {#                    <p> Trajectory used : <% answer_data.trajectory %></p>#}
-                    <p> Trajectory :</p>
-                    <div v-if="answer_data.trajectory.length === 0">
-                        <p> No possible trajectories found</p>
                     </div>
-                    <div v-else>
-                        <div class="trajectory_display_planets"></div>
-                    </div>
-                    <div v-if="answer_data.refueled_on.length === 0">
-                        No refuel needed
-                    </div>
-                    <div v-else>
-                        <p> Stops: <% answer_data.refueled_on %></p>
-                    </div>
+                    {#                    <div id="app" v-cloak @drop.prevent="add_file" @dragover.prevent>#}
+                    {#                        <p>Files to Upload (Drag them over)</p>#}
+                    {#                        <ul>#}
+                    {#                            <li v-if="!upload_disabled">#}
+                    {#                                <% input_fields.upload_file.name %>#}
+                    {#                                <button @click="remove_file(input_fields.upload_file)" title="Remove">X</button>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {##}
+                    {#                        <button :disabled="upload_disabled" @click="submit_file">Upload</button>#}
+                    {#                    </div>#}
 
-
+                    <div class="file_data_display">
+                        <p> Data </p>
+                        <p> <% answer_data.upload_file_json_answer %> </p>
+                    </div>
                 </div>
-                <div class="success_display">
-                    <p> Chances of success: </p>
-                    <p v-if="answer_data.odds_of_success >= 0" class="success_chances"><% answer_data.odds_of_success
-                        %>% </p>
-                    <div v-if="answer_data.odds_of_success === 0">
-                        <img class="c3po_gif"
-                             src="{{ url_for('static',filename="gif/c3po_we_are_doomed.gif") }}"
-                             alt="c3po_we_are_doomed gif">
-                    </div>
-                    <div v-else-if="answer_data.odds_of_success > 0 && answer_data.odds_of_success < 50">
-                        <img class="c3po_gif"
-                             src="{{ url_for('static',filename="gif/c3po_this_is_madness.gif") }}"
-                             alt="c3po_this_is_madness gif">
-                    </div>
-                    <div v-else-if="answer_data.odds_of_success >= 50 && answer_data.odds_of_success < 100">
-                        <img class="c3po_gif"
-                             src="{{ url_for('static',filename="gif/i_have_bad_feeling_about_this.gif") }}"
-                             alt="i_have_bad_feeling_about_this gif">
-                    </div>
-                    <div v-else-if="answer_data.odds_of_success === 100">
-                        <img class="c3po_gif"
-                             src="{{ url_for('static',filename="gif/c3po_wonderful.gif") }}"
-                             alt="c3po_wonderful gif">
-                    </div>
-                    <div v-else>
+                <div class="display_results">
 
+                    <div class="success_display">
+
+                        <div v-if="answer_data.odds_of_success >= 0" class="success_chances">
+                            <p> Chances of success: </p>
+                            <% answer_data.odds_of_success %>%
+                        </div>
+                        <div v-if="answer_data.odds_of_success === 0">
+                            <img class="c3po_gif"
+                                 src="{{ url_for('static',filename="gif/c3po_we_are_doomed.gif") }}"
+                                 alt="c3po_we_are_doomed gif">
+                        </div>
+                        <div v-else-if="answer_data.odds_of_success > 0 && answer_data.odds_of_success < 50">
+                            <img class="c3po_gif"
+                                 src="{{ url_for('static',filename="gif/c3po_this_is_madness.gif") }}"
+                                 alt="c3po_this_is_madness gif">
+                        </div>
+                        <div v-else-if="answer_data.odds_of_success >= 50 && answer_data.odds_of_success < 100">
+                            <img class="c3po_gif"
+                                 src="{{ url_for('static',filename="gif/i_have_bad_feeling_about_this.gif") }}"
+                                 alt="i_have_bad_feeling_about_this gif">
+                        </div>
+                        <div v-else-if="answer_data.odds_of_success === 100">
+                            <img class="c3po_gif"
+                                 src="{{ url_for('static',filename="gif/c3po_wonderful.gif") }}"
+                                 alt="c3po_wonderful gif">
+                        </div>
+                        <div v-else>
+
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="trajectory_display">
+                {#                    <p> Trajectory used : <% answer_data.trajectory %></p>#}
+                <p> Trajectory :</p>
+                <div v-if="answer_data.trajectory.length === 0">
+                    <p> No possible trajectories found</p>
+                </div>
+                <div v-else>
+                    <div class="trajectory_display_planets"></div>
+                </div>
+                <div v-if="answer_data.refueled_on.length === 0">
+                    No refuel needed
+                </div>
+                <div v-else>
+                    <p> Stops: <% answer_data.refueled_on %></p>
                 </div>
             </div>
         </div>
