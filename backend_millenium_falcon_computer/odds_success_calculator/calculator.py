@@ -3,8 +3,7 @@ from itertools import combinations
 from typing import List, Dict
 
 from backend_millenium_falcon_computer.configuration.configuration import config
-from backend_millenium_falcon_computer.database.query_wrappers import query_all_routes, \
-    query_specific_origin_destination
+from backend_millenium_falcon_computer.database.query_wrappers import QueryWrappers
 
 
 def fetch_data_from_db() -> json:
@@ -12,7 +11,8 @@ def fetch_data_from_db() -> json:
     Récupère les informations des routes au format json
     :return: Les informations des routes au format json
     """
-    return query_all_routes()
+    query_wrappers = QueryWrappers()
+    return query_wrappers.query_all_routes()
 
 
 def fetch_data_from_config(config_informations):
@@ -37,13 +37,17 @@ def calculate_best_odds_of_success(json_from_empire: json, config_informations=c
     json_config = fetch_data_from_config(config_informations)
     # On calcul toute les routes possible à partir des informations de la base de données et de la configuration
     trajectories = calculate_all_possible_trajectories(json_config, json_from_db)
-    odds_info = calculte_odds(json_config=json_config, json_from_empire=json_from_empire, trajectories=trajectories)
+    odds_info = calculte_odds(json_config=json_config,
+                              json_from_empire=json_from_empire,
+                              trajectories=trajectories,
+                              json_database=json_from_db)
     return odds_info
 
 
-def calculte_odds(json_config: json, json_from_empire: json, trajectories: List, ) -> Dict:
+def calculte_odds(json_config: json, json_from_empire: json, trajectories: List, json_database) -> Dict:
     """
     Calcule les chances de succès de chacune des routes
+    :param json_database: Le json qui contient les données de la base de données
     :param trajectories: Tous les routes sur lesquels iterer pour les calculs
     :param json_config: Les données de configuration au format json
     :param json_from_empire: Les données lié à l'empire au format json
@@ -55,7 +59,7 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
     bounty_hunters = json_from_empire["bounty_hunters"]
     trajectories_time_and_caught_proba = []
     for trajectory in trajectories:
-        total_travel_time_without_refuel = compute_total_time_travel_without_refuel(trajectory)
+        total_travel_time_without_refuel = compute_total_time_travel_without_refuel(trajectory, json_database)
 
         count_refuel_times_needed = 0
         if total_travel_time_without_refuel >= autonomy:
@@ -78,10 +82,10 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
                     calculate_trajectorie_odss_no_refuel(bounty_hunters,
                                                          empire_countdown,
                                                          trajectories_time_and_caught_proba,
-                                                         trajectory)
+                                                         trajectory, json_database)
             else:
                 calculate_trajectories_odds_with_refuels(autonomy, bounty_hunters, count_refuel, empire_countdown,
-                                                         trajectories_time_and_caught_proba, trajectory)
+                                                         trajectories_time_and_caught_proba, trajectory,json_database)
 
     if not trajectories_time_and_caught_proba:
         return {}
@@ -93,7 +97,8 @@ def calculate_trajectories_odds_with_refuels(autonomy,
                                              count_refuel,
                                              empire_countdown,
                                              trajectories_time_and_caught_proba,
-                                             trajectory):
+                                             trajectory,
+                                             json_database):
     """
     Calcule toutes les combinaisons possible pour la trajectoire donné
     Et calcule la probabilité d'echec pour chaque combinaison
@@ -122,7 +127,7 @@ def calculate_trajectories_odds_with_refuels(autonomy,
         caught_proba = 0
         refueled_on = []
         for i in range(0, len(trajectory) - 1):
-            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1])
+            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1],json_database)
             current_planet = {
                 "planet": trajectory[i],
                 "day": total_travel_time_with_refuel
@@ -163,7 +168,8 @@ def calculate_trajectories_odds_with_refuels(autonomy,
 def calculate_trajectorie_odss_no_refuel(bounty_hunters,
                                          empire_countdown,
                                          trajectories_time_and_caught_proba,
-                                         trajectory):
+                                         trajectory,
+                                         json_database):
     """
     Et calcule la probabilité d'echec pour le trajet donné, où il n'y pas besoin de remettre du carburant
     :param bounty_hunters: Les planètes où se trouve les chasseurs de primes et à quel moment
@@ -176,7 +182,7 @@ def calculate_trajectorie_odss_no_refuel(bounty_hunters,
     caught_proba = 0
     # Calculer de la probabilité d'être capturer pour le trajet donné
     for i in range(0, len(trajectory) - 1):
-        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1])
+        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1],json_database)
         # La planète sur laquelle on se trouve actuellement avec le moment où on y est
         current_planet = {
             "planet": trajectory[i],
@@ -214,6 +220,7 @@ def find_best_proba_success(trajectories_time_and_caught_proba) -> Dict:
     :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
     :return: La trajectoire ayant le taux d'echec le plus bas
     """
+
     def take_caught_proba(elem):
         """
         Fonction pour sort la liste d'entrée
@@ -228,7 +235,7 @@ def find_best_proba_success(trajectories_time_and_caught_proba) -> Dict:
     return trajectories_time_and_caught_proba[0]
 
 
-def compute_total_time_travel_without_refuel(trajectory) -> int:
+def compute_total_time_travel_without_refuel(trajectory, json_database) -> int:
     """
     Calcule le temps de trajet total d'une trajectoire sans prendre en compte le refuel
     :param trajectory: La trajectoire sur laquelle calculer le temps de trajet
@@ -236,12 +243,12 @@ def compute_total_time_travel_without_refuel(trajectory) -> int:
     """
     total_travel_time_without_refuel = 0
     for i in range(0, len(trajectory) - 1):
-        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1])
+        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1], json_database)
         total_travel_time_without_refuel += travel_between
     return total_travel_time_without_refuel
 
 
-def get_travel_time_between(origin, destination) -> int:
+def get_travel_time_between(origin, destination, json_database) -> int:
     """
     Va interroger la BDD pour récupérer le temps de trajet entre les planètes "origin" et destination
     Puis renvoie cette valeur.
@@ -250,11 +257,11 @@ def get_travel_time_between(origin, destination) -> int:
     :param destination: La planète destination
     :return: Le temps de trajet entre origin et destination
     """
-    result = query_specific_origin_destination(origin, destination)
-    if result:
-        return result[0].travel_time
-    else:
-        return 0
+    travel_time = 0
+    for data in json_database:
+        if data.origin == origin and data.destination == destination:
+            travel_time = data.travel_time
+    return travel_time
 
 
 def transform_json_to_usable_data(json_from_db) -> json:
@@ -295,6 +302,7 @@ def calculate_all_possible_trajectories(json_config: json, json_from_db: json) -
         visited = [departure]
         trajectory = [departure]
         explore(dict_path_planets, planet, arrival, trajectory, trajectories, visited)
+
     return trajectories
 
 
