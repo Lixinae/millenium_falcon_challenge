@@ -2,13 +2,20 @@ import os
 import pathlib
 import json
 
+"""
+Tous les chemins utile au projet
+"""
 basedir = pathlib.Path(__file__).parent.parent.parent
 web_dir = os.path.join(basedir, "web_C3PO")
 web_templates_dir = os.path.join(web_dir, "templates")
 web_static_dir = os.path.join(web_dir, "static")
 web_upload_dir = os.path.join(web_dir, "uploads")
 resource_dir = os.path.join(basedir, "resources")
+generated_data_dir = os.path.join(basedir, "generated_data")
 
+"""
+Le type de fichier autorisé à être upload
+"""
 allowed_file_extensions_upload = {'json'}
 
 
