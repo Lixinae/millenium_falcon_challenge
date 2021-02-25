@@ -40,7 +40,7 @@ if __name__ == '__main__':
     start = time.time()
     odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
     end = time.time()
-    print(end - start)
+    print("Time total:" + str(end - start))
     if not odds_of_success_info:
         print(0)
     else:
