@@ -58,6 +58,10 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
     empire_countdown = json_from_empire["countdown"]
     bounty_hunters = json_from_empire["bounty_hunters"]
     trajectories_time_and_caught_proba = []
+    nb_planets = len(set([x.origin for x in json_database]))
+    # Car on ne peut pas avoir de bount_hunters sur le départ et l'arrivé
+    caught_probability_values_max_size = empire_countdown * (nb_planets - 1)
+    caught_probability_values = [caught_probability(x) for x in range(0, caught_probability_values_max_size)]
     for trajectory in trajectories:
         total_travel_time_without_refuel = compute_total_time_travel_without_refuel(trajectory, json_database)
 
@@ -74,19 +78,32 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
         maximum_possible_refuel_to_be_in_time = empire_countdown - total_travel_time_without_refuel
         if maximum_possible_refuel_to_be_in_time < 0:
             continue
-        # Calculer toutes les routes possibles avec n arret maximum, avec leur chance d'être capturé
+        # Calculer toutes les routes possibles avec count_refuel arret maximum, avec leur chance d'être capturé
         for count_refuel in range(0, maximum_possible_refuel_to_be_in_time + 1):
+            # Si on a un chemin à 0% d'être pris, on arrête le calcul directement pour éviter trop de calcul inutile
+            if any([x for x in trajectories_time_and_caught_proba if x["caught_proba"] == 0]):
+                return find_best_proba_success(trajectories_time_and_caught_proba)
             # Cas où l'on a pas besoin de refuel du tout et on fait le trajet d'un coup
             if count_refuel == 0:
                 if count_refuel_times_needed == 0:
-                    calculate_trajectorie_odss_no_refuel(bounty_hunters,
+                    calculate_trajectorie_odds_no_refuel(bounty_hunters,
                                                          empire_countdown,
                                                          trajectories_time_and_caught_proba,
-                                                         trajectory, json_database)
+                                                         trajectory,
+                                                         json_database,
+                                                         caught_probability_values)
             else:
-                calculate_trajectories_odds_with_refuels(autonomy, bounty_hunters, count_refuel, empire_countdown,
-                                                         trajectories_time_and_caught_proba, trajectory,json_database)
-
+                should_stop = calculate_trajectories_odds_with_refuels(autonomy,
+                                                                       bounty_hunters,
+                                                                       count_refuel,
+                                                                       empire_countdown,
+                                                                       trajectories_time_and_caught_proba,
+                                                                       trajectory,
+                                                                       json_database,
+                                                                       caught_probability_values)
+                if should_stop:
+                    return find_best_proba_success(trajectories_time_and_caught_proba)
+    print(len(trajectories_time_and_caught_proba))
     if not trajectories_time_and_caught_proba:
         return {}
     return find_best_proba_success(trajectories_time_and_caught_proba)
@@ -98,7 +115,8 @@ def calculate_trajectories_odds_with_refuels(autonomy,
                                              empire_countdown,
                                              trajectories_time_and_caught_proba,
                                              trajectory,
-                                             json_database):
+                                             json_database,
+                                             caught_probability_values):
     """
     Calcule toutes les combinaisons possible pour la trajectoire donné
     Et calcule la probabilité d'echec pour chaque combinaison
@@ -108,6 +126,8 @@ def calculate_trajectories_odds_with_refuels(autonomy,
     :param empire_countdown: Le timer à partir duquel la missions est considérer comme un echec
     :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
     :param trajectory: La trajectoire actuelle
+    :param json_database: La base de donnée au format json pour eviter les appels
+    :param caught_probability_values: Tableau des probabilité possible de capture
     """
     # On cherche tous les combinaisons possible
     combinaisons_planets_refuel = combinations(trajectory[:len(trajectory) - 1], count_refuel)
@@ -124,10 +144,9 @@ def calculate_trajectories_odds_with_refuels(autonomy,
         total_travel_time_with_refuel = 0
         count_time_encounter_bounty_hunters = 0
         current_fuel = autonomy
-        caught_proba = 0
         refueled_on = []
         for i in range(0, len(trajectory) - 1):
-            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1],json_database)
+            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1], json_database)
             current_planet = {
                 "planet": trajectory[i],
                 "day": total_travel_time_with_refuel
@@ -153,7 +172,10 @@ def calculate_trajectories_odds_with_refuels(autonomy,
                     count_time_encounter_bounty_hunters += 1
             current_fuel -= travel_between
             total_travel_time_with_refuel += travel_between
-        caught_proba = update_caught_probability(caught_proba, count_time_encounter_bounty_hunters)
+        if count_time_encounter_bounty_hunters > len(caught_probability_values):
+            caught_proba = caught_probability(caught_probability_values)
+        else:
+            caught_proba = caught_probability_values[count_time_encounter_bounty_hunters]
         # Il est inutile de créer l'objet et de l'ajouter à la liste si on excède le temps
         if total_travel_time_with_refuel <= empire_countdown:
             trajectory_time_and_caught_proba = {
@@ -163,26 +185,29 @@ def calculate_trajectories_odds_with_refuels(autonomy,
                 "refueled_on": refueled_on
             }
             trajectories_time_and_caught_proba.append(trajectory_time_and_caught_proba)
+    return False
 
 
-def calculate_trajectorie_odss_no_refuel(bounty_hunters,
+def calculate_trajectorie_odds_no_refuel(bounty_hunters,
                                          empire_countdown,
                                          trajectories_time_and_caught_proba,
                                          trajectory,
-                                         json_database):
+                                         json_database,
+                                         caught_probability_values):
     """
     Et calcule la probabilité d'echec pour le trajet donné, où il n'y pas besoin de remettre du carburant
     :param bounty_hunters: Les planètes où se trouve les chasseurs de primes et à quel moment
     :param empire_countdown: Le timer à partir duquel la missions est considérer comme un echec
     :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
     :param trajectory: La trajectoire actuelle
+    :param json_database: Les données json des planètes
+    :param caught_probability_values: Tableau des probabilité possible de capture
     """
     total_travel_time_no_refuel_needed = 0
     count_time_encounter_bounty_hunters = 0
-    caught_proba = 0
     # Calculer de la probabilité d'être capturer pour le trajet donné
     for i in range(0, len(trajectory) - 1):
-        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1],json_database)
+        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1], json_database)
         # La planète sur laquelle on se trouve actuellement avec le moment où on y est
         current_planet = {
             "planet": trajectory[i],
@@ -193,7 +218,10 @@ def calculate_trajectorie_odss_no_refuel(bounty_hunters,
         if current_planet in bounty_hunters:
             count_time_encounter_bounty_hunters += 1
         total_travel_time_no_refuel_needed += travel_between
-    caught_proba = update_caught_probability(caught_proba, count_time_encounter_bounty_hunters)
+    if count_time_encounter_bounty_hunters > len(caught_probability_values):
+        caught_proba = caught_probability(caught_probability_values)
+    else:
+        caught_proba = caught_probability_values[count_time_encounter_bounty_hunters]
     # Il est inutile de créer l'objet et de l'ajouter à la liste si on excède le temps
     if total_travel_time_no_refuel_needed <= empire_countdown:
         trajectory_time_and_caught_proba = {
@@ -205,7 +233,8 @@ def calculate_trajectorie_odss_no_refuel(bounty_hunters,
         trajectories_time_and_caught_proba.append(trajectory_time_and_caught_proba)
 
 
-def update_caught_probability(caught_proba, count_time_encounter_bounty_hunters):
+def caught_probability(count_time_encounter_bounty_hunters):
+    caught_proba = 0
     for i in range(0, count_time_encounter_bounty_hunters):
         num = pow(9, i)
         denom = pow(10, i + 1)
@@ -238,6 +267,7 @@ def find_best_proba_success(trajectories_time_and_caught_proba) -> Dict:
 def compute_total_time_travel_without_refuel(trajectory, json_database) -> int:
     """
     Calcule le temps de trajet total d'une trajectoire sans prendre en compte le refuel
+    :param json_database: La bdd sous forme json pour être plus rapide qu'un appelle à la BDD
     :param trajectory: La trajectoire sur laquelle calculer le temps de trajet
     :return: Le temps de trajet total d'une trajectoire sans prendre en compte le refuel
     """
@@ -253,6 +283,7 @@ def get_travel_time_between(origin, destination, json_database) -> int:
     Va interroger la BDD pour récupérer le temps de trajet entre les planètes "origin" et destination
     Puis renvoie cette valeur.
     Renvoie 0 en cas de non existence
+    :param json_database: La bdd sous forme json pour être plus rapide qu'un appelle à la BDD
     :param origin: La planète d'origin
     :param destination: La planète destination
     :return: Le temps de trajet entre origin et destination
@@ -297,12 +328,34 @@ def calculate_all_possible_trajectories(json_config: json, json_from_db: json) -
     if "arrival" in json_config:
         arrival = json_config["arrival"]
     dict_path_planets = transform_json_to_usable_data(json_from_db)
+    # Only for testing purpose
+    # dict_path_planets = {}
+    # for planet in mass_data_gen_main.generated_planets:
+    #     planet_name = planet["origin"]
+    #     destination = planet["destination"]
+    #     if planet_name not in dict_path_planets:
+    #         dict_path_planets[planet_name] = [destination]
+    #     else:
+    #         dict_path_planets[planet_name].append(destination)
+    #
+    # # Todo -> enlever les test ici
+    # print(dict_path_planets)
+    # print(len(dict_path_planets))
+
     trajectories = []
+    # planets = get_list_planets()
+    # departure = planets[30]
+    # arrival = planets[0]
+    import time
+    start = time.time()
     for planet in dict_path_planets[departure]:
         visited = [departure]
         trajectory = [departure]
         explore(dict_path_planets, planet, arrival, trajectory, trajectories, visited)
-
+    end = time.time()
+    print("Time explore:" + str(end - start))
+    print(trajectories)
+    print(len(trajectories))
     return trajectories
 
 
