@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir
+from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir, generated_data_dir
 from backend_millenium_falcon_computer.database import init_db
 from backend_millenium_falcon_computer.database.query_wrappers import QueryWrappers
 from backend_millenium_falcon_computer.odds_success_calculator import calculator
@@ -19,9 +19,14 @@ def read_json_file(empire_json_file_: json):
 if __name__ == '__main__':
 
     # Default values
-    millenium_json_config_file = os.path.join(resource_dir, "test_data/anything_can_go/millenium-falcon.json")
-    # millenium_json_config_file = os.path.join(resource_dir, "test_data/example4/millenium-falcon.json")
-    empire_json_file = os.path.join(resource_dir, "test_data/anything_can_go/empire.json")
+    # millenium_json_config_file = os.path.join(resource_dir, "test_data/anything_can_go/millenium-falcon.json")
+    # empire_json_file = os.path.join(resource_dir, "test_data/anything_can_go/empire.json")
+
+    # millenium_json_config_file = os.path.join(resource_dir, "test_data/example3/millenium-falcon.json")
+    # empire_json_file = os.path.join(resource_dir, "test_data/example3/empire.json")
+
+    millenium_json_config_file = os.path.join(generated_data_dir, "millenium-falcon.json")
+    empire_json_file = os.path.join(generated_data_dir, "empire.json")
 
     if len(sys.argv) == 3:
         millenium_json_config_file = sys.argv[1]
@@ -41,6 +46,7 @@ if __name__ == '__main__':
     odds_of_success_info = calculator.calculate_best_odds_of_success(json_empire)
     end = time.time()
     print("Time total:" + str(end - start))
+    print(odds_of_success_info)
     if not odds_of_success_info:
         print(0)
     else:
