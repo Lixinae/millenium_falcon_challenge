@@ -61,13 +61,25 @@ body {
 }
 
 .label_empire_data {
+    font-size: 30px;
     color: #C8C8C8;
 }
+
+.submit_empire_data {
+    font-size: 20px;
+}
+
 
 .file_data_display {
     color: #C8C8C8;
 }
 
 .success_display {
+    font-size: 35px;
     color: #C8C8C8;
+}
+
+.success_chances{
+    color: gold;
+    text-shadow: 0 0 0.15em #FFFFFF;
 }

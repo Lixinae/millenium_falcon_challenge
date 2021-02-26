@@ -18,7 +18,11 @@
                             <label class="label_empire_data"> Empire data File
                                 <input type="file" id="file" ref="file" v-on:change="handle_file_upload()" required/>
                             </label>
-                            <button :disabled="upload_disabled" type="submit">upload file and compute data</button>
+                            <button :disabled="upload_disabled"
+                                    type="submit"
+                                    class="submit_empire_data">
+                                Upload file and compute data
+                            </button>
                         </form>
 
                     </div>
@@ -43,9 +47,9 @@
 
                     <div class="success_display">
 
-                        <div v-if="answer_data.odds_of_success >= 0" class="success_chances">
+                        <div v-if="answer_data.odds_of_success >= 0">
                             <p> Chances of success: </p>
-                            <% answer_data.odds_of_success %>%
+                            <div class="success_chances"> <% answer_data.odds_of_success %>%</div>
                         </div>
                         <div v-if="answer_data.odds_of_success === 0">
                             <img class="c3po_gif"
