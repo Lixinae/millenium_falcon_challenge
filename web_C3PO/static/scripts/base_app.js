@@ -72,7 +72,7 @@ const base_app_vue = new Vue({
                     let planet_img = "<img class=\"planet_img\" src=\'" + url_img + "\' alt=\"Planet:" + planet_name + " miniature\">"
                     let figure_caption = "<figcaption class='fig_caption'>" + planet_name + "</figcaption>"
                     let end_figure = "</figure>"
-                    let url_arrow = Flask.url_for("static", {"filename": "img/arrow.png"})
+                    let url_arrow = Flask.url_for("static", {"filename": "img/arrow_glow.png"})
                     let arrow_img = "<img class=\"arrow_img\" src=\'" + url_arrow + "\' alt=\"Planet:" + planet_name + " miniature\">"
                     let output = start_figure + planet_img + figure_caption + end_figure
 
