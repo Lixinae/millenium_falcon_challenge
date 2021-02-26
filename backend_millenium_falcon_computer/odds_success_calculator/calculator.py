@@ -76,16 +76,10 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
             continue
 
         # On ne prendra en compte le refuel que dans les trajets où l'on peut arriver à temps
-        maximum_possible_refuel_to_be_in_time = min(len(trajectory)-2, empire_countdown - total_travel_time_without_refuel)
+        maximum_possible_refuel_to_be_in_time = min(len(trajectory) - 2,
+                                                    empire_countdown - total_travel_time_without_refuel)
         if maximum_possible_refuel_to_be_in_time < 0:
             continue
-
-        # Todo -> Supprimer les prints
-        print(trajectory)
-        print("count_refuel_times_needed:" + str(count_refuel_times_needed))
-        print("total_travel_time_without_refuel:" + str(total_travel_time_without_refuel))
-        print("maximum_possible_refuel_to_be_in_time:" + str(maximum_possible_refuel_to_be_in_time))
-
 
         # Calculer toutes les routes possibles avec count_refuel arret maximum, avec leur chance d'être capturé
         for count_refuel in range(count_refuel_times_needed, maximum_possible_refuel_to_be_in_time + 1):
@@ -94,134 +88,140 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
                 return find_best_proba_success(trajectories_time_and_caught_proba)
             # Cas où l'on a pas besoin de refuel du tout et on fait le trajet d'un coup
             if count_refuel == 0:
-                if count_refuel_times_needed == 0:
-                    calculate_trajectorie_odds_no_refuel(bounty_hunters,
-                                                         empire_countdown,
-                                                         trajectories_time_and_caught_proba,
-                                                         trajectory,
-                                                         json_database,
-                                                         caught_probability_values)
+                calculate_trajectorie_odds_no_refuel(bounty_hunters,
+                                                     empire_countdown,
+                                                     trajectories_time_and_caught_proba,
+                                                     trajectory,
+                                                     json_database,
+                                                     caught_probability_values)
             else:
-                should_stop = calculate_trajectories_odds_with_refuels(autonomy,
-                                                                       bounty_hunters,
-                                                                       count_refuel,
-                                                                       empire_countdown,
-                                                                       trajectories_time_and_caught_proba,
-                                                                       trajectory,
-                                                                       json_database,
-                                                                       caught_probability_values)
-                if should_stop:
-                    return find_best_proba_success(trajectories_time_and_caught_proba)
+                combinations_falcon_data(trajectory,
+                                         count_refuel,
+                                         bounty_hunters,
+                                         caught_probability_values,
+                                         autonomy,
+                                         empire_countdown,
+                                         json_database,
+                                         trajectories_time_and_caught_proba)
     if not trajectories_time_and_caught_proba:
         return {}
     return find_best_proba_success(trajectories_time_and_caught_proba)
 
 
-def calculate_trajectories_odds_with_refuels(autonomy,
-                                             bounty_hunters,
-                                             count_refuel,
-                                             empire_countdown,
-                                             trajectories_time_and_caught_proba,
-                                             trajectory,
-                                             json_database,
-                                             caught_probability_values):
+def combinations_falcon_data(trajectory,
+                             taille_combi,
+                             bounty_hunters,
+                             caught_probability_values,
+                             autonomy,
+                             empire_countdown,
+                             json_database,
+                             trajectories_time_and_caught_proba):
     """
-    Calcule toutes les combinaisons possible pour la trajectoire donné
-    Et calcule la probabilité d'echec pour chaque combinaison
-    :param autonomy: L'autonomie du faucon millenium
+
+    :param trajectory: La trajectoire actuelle sur laquelle test la combinaison
+    :param taille_combi: Taille de la combinaison voulu
     :param bounty_hunters: Les planètes où se trouve les chasseurs de primes et à quel moment
-    :param count_refuel: Le nombre de fois où l'on va remettre du carburant pour continuer
-    :param empire_countdown: Le timer à partir duquel la missions est considérer comme un echec
-    :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
-    :param trajectory: La trajectoire actuelle
-    :param json_database: La base de donnée au format json pour eviter les appels
     :param caught_probability_values: Tableau des probabilité possible de capture
+    :param autonomy: autonomy: L'autonomie du faucon millenium
+    :param empire_countdown: Le timer à partir duquel la missions est considéré comme un echec
+    :param json_database: La base de donnée au format json pour eviter les appels à la base de données
+    :param trajectories_time_and_caught_proba:
+    :return:
     """
-    # On cherche tous les combinaisons possible
-    combinaisons_planets_refuel = combinations(trajectory[:len(trajectory) - 1], count_refuel)
-    list_combinaisons_planets_refuel = list(combinaisons_planets_refuel)
+    result = []
+    pool = tuple(trajectory[:len(trajectory) - 1])
+    size_pool = len(pool)
+    if taille_combi > size_pool:
+        return result
+    indices = [x for x in range(taille_combi)]
 
-    # Cette méthode est très lourde et est très certainement améliorable
-    # Si count_refuel == 1
-    #   On test tous les trajets possibe avec 1 refuel (chaque planète peut être un point de refuel
-    # Si count_refuel == 2
-    #   On test tous les trajets possible pour chaque combinaison de 2 planète possible pour refuel
-    # Etc....
-    # Todo -> Comment réduire le nombre de combinaison possibles ici ?
-    print(len(list_combinaisons_planets_refuel))
-    # Todo -> Est-ce qu'on ne pourrais pas faire un arbre avec les combinaison ?
-    # Puis un algo récursif ?
-    # Et donc on éviter de recalculer les valeurs identique
+    combinaison = tuple(pool[i] for i in indices)
 
-    # calculate_trajectories_odds_with_refuels_aux(list_combinaisons_planets_refuel)
-    # Todo -> Utiliser ce lien
-    # https://haltode.fr/algo/general/approche/dynamique.html
-
-    # importance_max[nb_objets_max][poids_max] initialisé à PAS_CALCULÉ
-
-    # Algo naif -> Très similaire à l'algo que j'ai
-    #     maximiser_importance():
-    #       importance_max = 0
-    #
-    #       Pour chaque arrangement d'objets:
-    #           Si importance > importance_max ET pas de surcharge:
-    #               importance_max = importance
-    #       Retourner importance_max
-    #
-    # Afficher
-    # maximiser_importance()
-
-
-    for combinaisons_planet_refuel in list_combinaisons_planets_refuel:
-        # A partir du moment où on a une probabilité à 0 pour un trajet, on ne pourra pas avoir mieux
-        if any([x for x in trajectories_time_and_caught_proba if x["caught_proba"] == 0]):
-            return find_best_proba_success(trajectories_time_and_caught_proba)
-
-        total_travel_time_with_refuel = 0
-        count_time_encounter_bounty_hunters = 0
-        current_fuel = autonomy
-        refueled_on = []
-        for i in range(0, len(trajectory) - 1):
-            travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1], json_database)
-            current_planet = {
-                "planet": trajectory[i],
-                "day": total_travel_time_with_refuel
-            }
-            if current_planet in bounty_hunters:
-                count_time_encounter_bounty_hunters += 1
-            for planet in combinaisons_planet_refuel:
-                if current_planet["planet"] == planet:
-                    refueled_on.append(planet)
-                    total_travel_time_with_refuel += 1
-                    current_planet["day"] = total_travel_time_with_refuel
-                    current_fuel = autonomy
-                    if current_planet in bounty_hunters:
-                        count_time_encounter_bounty_hunters += 1
-
-            predicted_fuel = current_fuel - travel_between
-            if predicted_fuel < 0:  # On a besoin de refuel
-                total_travel_time_with_refuel += 1
-                current_planet["day"] = total_travel_time_with_refuel
-                current_fuel = autonomy
-                refueled_on.append(current_planet["planet"])
-                if current_planet in bounty_hunters:
-                    count_time_encounter_bounty_hunters += 1
-            current_fuel -= travel_between
-            total_travel_time_with_refuel += travel_between
-        if count_time_encounter_bounty_hunters > len(caught_probability_values):
-            caught_proba = caught_probability(caught_probability_values)
+    data = calculate_total_time_odds_for_combination(combinaison,
+                                                     bounty_hunters,
+                                                     caught_probability_values,
+                                                     autonomy,
+                                                     json_database,
+                                                     trajectory)
+    if data not in result:
+        if data["total_time"] <= empire_countdown:
+            trajectories_time_and_caught_proba.append(data)
+    while True:
+        for i in reversed(range(taille_combi)):
+            if indices[i] != i + size_pool - taille_combi:
+                break
         else:
-            caught_proba = caught_probability_values[count_time_encounter_bounty_hunters]
-        # Il est inutile de créer l'objet et de l'ajouter à la liste si on excède le temps
-        if total_travel_time_with_refuel <= empire_countdown:
-            trajectory_time_and_caught_proba = {
-                "trajectory": trajectory,
-                "total_time": total_travel_time_with_refuel,
-                "caught_proba": caught_proba,
-                "refueled_on": refueled_on
-            }
-            trajectories_time_and_caught_proba.append(trajectory_time_and_caught_proba)
-    return False
+            return
+        indices[i] += 1
+        for j in range(i + 1, taille_combi):
+            indices[j] = indices[j - 1] + 1
+        combinaison = tuple(pool[i] for i in indices)
+        data = calculate_total_time_odds_for_combination(combinaison,
+                                                         bounty_hunters,
+                                                         caught_probability_values,
+                                                         autonomy,
+                                                         json_database,
+                                                         trajectory)
+        if data not in result:
+            if data["total_time"] <= empire_countdown:
+                trajectories_time_and_caught_proba.append(data)
+
+
+def calculate_total_time_odds_for_combination(combinaisons_planet_refuel,
+                                              bounty_hunters,
+                                              caught_probability_values,
+                                              autonomy,
+                                              json_database,
+                                              trajectory):
+    """
+    Calcul le temps mis et les chances d'être pris pour la combinaison donné
+    :param combinaisons_planet_refuel: La combinaison à tester
+    :param bounty_hunters: Les planètes où se trouve les chasseurs de primes et à quel moment
+    :param caught_probability_values: Tableau des probabilité possible de capture
+    :param autonomy: L'autonomie du faucon millenium
+    :param json_database: La base de donnée au format json pour eviter les appels à la DB
+    :param trajectory: La trajectoire actuelle
+    :return: Les informations sur la combinaison
+    """
+    current_day = 0
+    count_time_encounter_bounty_hunters = 0
+    current_fuel = autonomy
+    refuel_on = combinaisons_planet_refuel[:len(combinaisons_planet_refuel)]
+    for i in range(0, len(trajectory) - 1):
+        travel_between = get_travel_time_between(trajectory[i], trajectory[i + 1], json_database)
+        current_planet = trajectory[i]
+        current_planet_day = {
+            "planet": trajectory[i],
+            "day": current_day
+        }
+        if current_planet_day in bounty_hunters:
+            count_time_encounter_bounty_hunters += 1
+        if current_planet in refuel_on:
+            # Si la planète actuel est dans la liste des combinaions, on doit refuel
+            # On met à jour le current_planet_day pour check si on est sur une planète avec les bounty hunters
+            current_day += 1
+            current_planet_day["day"] = current_day
+            current_fuel = autonomy
+            if current_planet_day in bounty_hunters:
+                count_time_encounter_bounty_hunters += 1
+        predicted_fuel = current_fuel - travel_between
+        # Si on doit refuel sur d'autres planète que celle dans la combinaison, on ajoute 1 jour de refuel
+        # On ne doit refuel QUE sur les planètes de la combinaison
+        if predicted_fuel < 0:
+            current_day += 1
+        current_fuel -= travel_between
+        current_day += travel_between
+    if count_time_encounter_bounty_hunters > len(caught_probability_values):
+        caught_proba = caught_probability(caught_probability_values)
+    else:
+        caught_proba = caught_probability_values[count_time_encounter_bounty_hunters]
+    trajectory_time_and_caught_proba = {
+        "trajectory": trajectory,
+        "total_time": current_day,
+        "caught_proba": caught_proba,
+        "refueled_on": refuel_on
+    }
+    return trajectory_time_and_caught_proba
 
 
 def calculate_trajectorie_odds_no_refuel(bounty_hunters,
@@ -324,11 +324,10 @@ def get_travel_time_between(origin, destination, json_database) -> int:
     :param destination: La planète destination
     :return: Le temps de trajet entre origin et destination
     """
-    travel_time = 0
-    for data in json_database:
-        if data.origin == origin and data.destination == destination:
-            travel_time = data.travel_time
-    return travel_time
+    val = next((planet for planet in json_database if planet.origin == origin and planet.destination == destination), None)
+    if val:
+        return val.travel_time
+    return 0
 
 
 def transform_json_to_usable_data(json_from_db) -> json:
