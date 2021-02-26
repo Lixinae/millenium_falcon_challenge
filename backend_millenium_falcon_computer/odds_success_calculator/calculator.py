@@ -60,9 +60,10 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
     trajectories_time_and_caught_proba = []
     nb_planets = len(set([x.origin for x in json_database]))
     # Car on ne peut pas avoir de bount_hunters sur le départ et l'arrivé
-    caught_probability_values_max_size = empire_countdown * (nb_planets - 1)
+    caught_probability_values_max_size = empire_countdown + nb_planets
     caught_probability_values = [caught_probability(x) for x in range(0, caught_probability_values_max_size)]
-    for trajectory in trajectories:
+    unique_trajectories = [list(i) for i in set(map(tuple, trajectories))]
+    for trajectory in unique_trajectories:
         total_travel_time_without_refuel = compute_total_time_travel_without_refuel(trajectory, json_database)
 
         count_refuel_times_needed = 0
@@ -75,11 +76,19 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
             continue
 
         # On ne prendra en compte le refuel que dans les trajets où l'on peut arriver à temps
-        maximum_possible_refuel_to_be_in_time = empire_countdown - total_travel_time_without_refuel
+        maximum_possible_refuel_to_be_in_time = min(len(trajectory)-2, empire_countdown - total_travel_time_without_refuel)
         if maximum_possible_refuel_to_be_in_time < 0:
             continue
+
+        # Todo -> Supprimer les prints
+        print(trajectory)
+        print("count_refuel_times_needed:" + str(count_refuel_times_needed))
+        print("total_travel_time_without_refuel:" + str(total_travel_time_without_refuel))
+        print("maximum_possible_refuel_to_be_in_time:" + str(maximum_possible_refuel_to_be_in_time))
+
+
         # Calculer toutes les routes possibles avec count_refuel arret maximum, avec leur chance d'être capturé
-        for count_refuel in range(0, maximum_possible_refuel_to_be_in_time + 1):
+        for count_refuel in range(count_refuel_times_needed, maximum_possible_refuel_to_be_in_time + 1):
             # Si on a un chemin à 0% d'être pris, on arrête le calcul directement pour éviter trop de calcul inutile
             if any([x for x in trajectories_time_and_caught_proba if x["caught_proba"] == 0]):
                 return find_best_proba_success(trajectories_time_and_caught_proba)
@@ -103,7 +112,6 @@ def calculte_odds(json_config: json, json_from_empire: json, trajectories: List,
                                                                        caught_probability_values)
                 if should_stop:
                     return find_best_proba_success(trajectories_time_and_caught_proba)
-    print(len(trajectories_time_and_caught_proba))
     if not trajectories_time_and_caught_proba:
         return {}
     return find_best_proba_success(trajectories_time_and_caught_proba)
@@ -139,8 +147,36 @@ def calculate_trajectories_odds_with_refuels(autonomy,
     # Si count_refuel == 2
     #   On test tous les trajets possible pour chaque combinaison de 2 planète possible pour refuel
     # Etc....
+    # Todo -> Comment réduire le nombre de combinaison possibles ici ?
+    print(len(list_combinaisons_planets_refuel))
+    # Todo -> Est-ce qu'on ne pourrais pas faire un arbre avec les combinaison ?
+    # Puis un algo récursif ?
+    # Et donc on éviter de recalculer les valeurs identique
+
+    # calculate_trajectories_odds_with_refuels_aux(list_combinaisons_planets_refuel)
+    # Todo -> Utiliser ce lien
+    # https://haltode.fr/algo/general/approche/dynamique.html
+
+    # importance_max[nb_objets_max][poids_max] initialisé à PAS_CALCULÉ
+
+    # Algo naif -> Très similaire à l'algo que j'ai
+    #     maximiser_importance():
+    #       importance_max = 0
+    #
+    #       Pour chaque arrangement d'objets:
+    #           Si importance > importance_max ET pas de surcharge:
+    #               importance_max = importance
+    #       Retourner importance_max
+    #
+    # Afficher
+    # maximiser_importance()
+
 
     for combinaisons_planet_refuel in list_combinaisons_planets_refuel:
+        # A partir du moment où on a une probabilité à 0 pour un trajet, on ne pourra pas avoir mieux
+        if any([x for x in trajectories_time_and_caught_proba if x["caught_proba"] == 0]):
+            return find_best_proba_success(trajectories_time_and_caught_proba)
+
         total_travel_time_with_refuel = 0
         count_time_encounter_bounty_hunters = 0
         current_fuel = autonomy
@@ -328,34 +364,12 @@ def calculate_all_possible_trajectories(json_config: json, json_from_db: json) -
     if "arrival" in json_config:
         arrival = json_config["arrival"]
     dict_path_planets = transform_json_to_usable_data(json_from_db)
-    # Only for testing purpose
-    # dict_path_planets = {}
-    # for planet in mass_data_gen_main.generated_planets:
-    #     planet_name = planet["origin"]
-    #     destination = planet["destination"]
-    #     if planet_name not in dict_path_planets:
-    #         dict_path_planets[planet_name] = [destination]
-    #     else:
-    #         dict_path_planets[planet_name].append(destination)
-    #
-    # # Todo -> enlever les test ici
-    # print(dict_path_planets)
-    # print(len(dict_path_planets))
 
     trajectories = []
-    # planets = get_list_planets()
-    # departure = planets[30]
-    # arrival = planets[0]
-    import time
-    start = time.time()
     for planet in dict_path_planets[departure]:
         visited = [departure]
         trajectory = [departure]
         explore(dict_path_planets, planet, arrival, trajectory, trajectories, visited)
-    end = time.time()
-    print("Time explore:" + str(end - start))
-    print(trajectories)
-    print(len(trajectories))
     return trajectories
 
 
