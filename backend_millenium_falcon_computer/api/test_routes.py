@@ -1,3 +1,5 @@
+import json
+from io import BytesIO
 from unittest import TestCase
 
 from backend_millenium_falcon_computer import create_app
@@ -8,12 +10,65 @@ class TestUploadFileApi(TestCase):
         self.fail()
 
     def test_post_data_ok(self):
+        dict_data = {
+            "countdown": 7,
+            "bounty_hunters": [
+                {
+                    "planet": "Hoth",
+                    "day": 6
+                },
+                {
+                    "planet": "Hoth",
+                    "day": 7
+                },
+                {
+                    "planet": "Hoth",
+                    "day": 8
+                }
+            ]
+        }
+        input_json = json.dumps(dict_data, indent=4).encode("utf-8")
         # Todo -> Terminer les test api
-        response = self.test_app.post(self.api_route + "upload_and_compute",)
+        data = {
+            'file': (BytesIO(input_json), 'empire.json'),  # we use StringIO to simulate file object
+        }
+        response = self.test_app.post(self.api_route + "upload_and_compute",
+                                      data=data,
+                                      follow_redirects=True)
+        response_json = response.data
+        self.assertTrue(b"odds_of_success" in response_json)
+        self.assertTrue(b"upload_file_json_answer" in response_json)
+        self.assertTrue(b"trajectory" in response_json)
+        self.assertTrue(b"refueled_on" in response_json)
 
-        response_json = response.json
-        self.assertTrue("odds_of_success" in response_json)
-        self.assertTrue("upload_file_json_answer" in response_json)
+    def test_post_data_nok(self):
+        dict_data = {
+            "countdown": 7,
+            "bounty_hunters": [
+                {
+                    "planet": "Hoth",
+                    "day": 6
+                },
+                {
+                    "planet": "Hoth",
+                    "day": 7
+                },
+                {
+                    "planet": "Hoth",
+                    "day": 8
+                }
+            ]
+        }
+        input_json = json.dumps(dict_data, indent=4).encode("utf-8")
+
+        data = {
+            'file': (BytesIO(input_json), 'empire.txt'),  # we use StringIO to simulate file object
+        }
+        response = self.test_app.post(self.api_route + "upload_and_compute",
+                                      data=data,
+                                      follow_redirects=True)
+        response_json = response.data
+        self.assertTrue(b"null\n" in response_json)
 
     def setUp(self):
         self.test_app = create_app().test_client()
