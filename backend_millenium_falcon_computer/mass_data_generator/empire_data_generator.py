@@ -17,15 +17,18 @@ def generate_e_data(numb_of_bounty_hunters: int) -> json:
     :return:
     """
     planets = get_list_planets()
-    max_countdown = 100
+    min_coutdown = int(len(planets)/5)
+    max_countdown = min_coutdown*2
+    countdown = random.randint(min_coutdown, max_countdown)
     empire_data = {
-        "countdown": random.randint(5, max_countdown),
+        "countdown": countdown,
         "bounty_hunters": []
     }
+    numb_of_bounty_hunters = numb_of_bounty_hunters * len(planets)
     for i in range(0, numb_of_bounty_hunters):
         bh = {
             "planet": random.choice(planets),
-            "day": random.randint(1, max_countdown - 1)
+            "day": random.randint(1, countdown - 1)
         }
         # Pour eviter les doublons
         if bh not in empire_data["bounty_hunters"]:
@@ -33,17 +36,20 @@ def generate_e_data(numb_of_bounty_hunters: int) -> json:
     return empire_data
 
 
-def generate_empire_data(numb_of_bounty_hunters: int, save_to_file: bool = True) -> Dict:
+def generate_empire_data(numb_of_bounty_hunters: int,
+                         save_to_file: bool = True,
+                         filename: str = "empire.json") -> Dict:
     """
 
+    :param filename: Nom du fichier de sauvegarde
     :param numb_of_bounty_hunters:
     :param save_to_file: Indique si l'on veut sauvegarder les données dans un fichier ou non
-    :return:
+    :return: Le json de l'empire généré
     """
     empire_data = generate_e_data(numb_of_bounty_hunters)
 
     if save_to_file:
-        save_empire_json_to_file(empire_data, "empire.json")
+        save_empire_json_to_file(empire_data, filename)
     return empire_data
 
 
