@@ -19,9 +19,9 @@ class GiveMeTheOddsTests(unittest.TestCase):
         odds_of_success = 0
         if odds_of_success_info:
             odds_of_success = odds_of_success_info["odds_of_success"]
-            self.assertEqual(odds_of_success, 0)
+            self.assertEqual(0, odds_of_success)
         else:
-            self.assertEqual(odds_of_success, 0)
+            self.assertEqual(0, odds_of_success)
 
     def test_example_2(self):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example2/millenium-falcon.json")
@@ -33,9 +33,9 @@ class GiveMeTheOddsTests(unittest.TestCase):
         odds_of_success = 0
         if odds_of_success_info:
             odds_of_success = odds_of_success_info["odds_of_success"]
-            self.assertEqual(odds_of_success, 81)
+            self.assertEqual(81, odds_of_success)
         else:
-            self.assertEqual(odds_of_success, 0)
+            self.assertEqual(0, odds_of_success)
 
     def test_example_3(self):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example3/millenium-falcon.json")
@@ -47,9 +47,9 @@ class GiveMeTheOddsTests(unittest.TestCase):
         odds_of_success = 0
         if odds_of_success_info:
             odds_of_success = odds_of_success_info["odds_of_success"]
-            self.assertEqual(odds_of_success, 90)
+            self.assertEqual(90, odds_of_success)
         else:
-            self.assertEqual(odds_of_success, 0)
+            self.assertEqual(0, odds_of_success)
 
     def test_example_4(self):
         millenium_json_config_file = os.path.join(self.test_data_folder, "example4/millenium-falcon.json")
@@ -61,9 +61,9 @@ class GiveMeTheOddsTests(unittest.TestCase):
         odds_of_success = 0
         if odds_of_success_info:
             odds_of_success = odds_of_success_info["odds_of_success"]
-            self.assertEqual(odds_of_success, 100)
+            self.assertEqual(100, odds_of_success)
         else:
-            self.assertEqual(odds_of_success, 0)
+            self.assertEqual(0, odds_of_success)
 
     def setUp(self) -> None:
         self.test_data_folder = os.path.join(resource_dir, "test_data")
