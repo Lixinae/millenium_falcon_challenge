@@ -1,0 +1,17 @@
+#####################################
+#### Generation de jeux de tests ####
+#####################################
+- La generation des data pour les planetes -> On doit avoir un graphe connexe voir fortement connexe
+- Sans quoi il est possible que la planète de départ n'ai pas de lien avec la planète d'arrivé
+(Solution pour le moment):
+Avoir chaque planète relié à une autre dans les 2 sens, de tel sorte à ce que si on est sur une planète A
+ et qu'on veuille aller à une planète B, on ai toujours un chemin possible
+ Dans ce cas le graphe est toujours connexe
+
+##############################################
+#### Algorithme de chemin le plus optimal ####
+##############################################
+- Il faudrait ameliorer les performance en reduisant le nombre de chemin possible
+(Le problème principal viens des combinaisons des planètes où l'on peut s'arrêter)
+- La pour le moment quand il commence à y avoir trop de combinaison ça prend beaucoup trop de temps
+- La complexité est exponentielle actuellement
