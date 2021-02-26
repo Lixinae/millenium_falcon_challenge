@@ -1,0 +1,6 @@
+{
+    "autonomy": 8,
+    "departure": "Umbara",
+    "arrival": "Tatooine",
+    "routes_db": "universe.db"
+}

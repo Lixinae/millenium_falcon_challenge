@@ -1,0 +1,2112 @@
+[
+{
+    "origin": "Ojom",
+    "destination": "Kashyyyk",
+    "travel_time": 2
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Ojom",
+    "travel_time": 2
+},
+{
+    "origin": "Geonosis",
+    "destination": "Kashyyyk",
+    "travel_time": 6
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Geonosis",
+    "travel_time": 6
+},
+{
+    "origin": "Skako",
+    "destination": "Ojom",
+    "travel_time": 2
+},
+{
+    "origin": "Ojom",
+    "destination": "Skako",
+    "travel_time": 2
+},
+{
+    "origin": "Skako",
+    "destination": "Geonosis",
+    "travel_time": 6
+},
+{
+    "origin": "Geonosis",
+    "destination": "Skako",
+    "travel_time": 6
+},
+{
+    "origin": "Skako",
+    "destination": "Kashyyyk",
+    "travel_time": 4
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Skako",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Geonosis",
+    "travel_time": 4
+},
+{
+    "origin": "Geonosis",
+    "destination": "Trandosha",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Kashyyyk",
+    "travel_time": 6
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Trandosha",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Geonosis",
+    "travel_time": 6
+},
+{
+    "origin": "Geonosis",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Ojom",
+    "travel_time": 4
+},
+{
+    "origin": "Ojom",
+    "destination": "Bespin",
+    "travel_time": 4
+},
+{
+    "origin": "Bespin",
+    "destination": "Skako",
+    "travel_time": 1
+},
+{
+    "origin": "Skako",
+    "destination": "Bespin",
+    "travel_time": 1
+},
+{
+    "origin": "Tholoth",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Kashyyyk",
+    "travel_time": 4
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Tholoth",
+    "travel_time": 4
+},
+{
+    "origin": "Tholoth",
+    "destination": "Ojom",
+    "travel_time": 3
+},
+{
+    "origin": "Ojom",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Bestine IV",
+    "travel_time": 6
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Skako",
+    "travel_time": 1
+},
+{
+    "origin": "Skako",
+    "destination": "Bestine IV",
+    "travel_time": 1
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Trandosha",
+    "travel_time": 2
+},
+{
+    "origin": "Trandosha",
+    "destination": "Bestine IV",
+    "travel_time": 2
+},
+{
+    "origin": "Chandrila",
+    "destination": "Bespin",
+    "travel_time": 2
+},
+{
+    "origin": "Bespin",
+    "destination": "Chandrila",
+    "travel_time": 2
+},
+{
+    "origin": "Chandrila",
+    "destination": "Geonosis",
+    "travel_time": 6
+},
+{
+    "origin": "Geonosis",
+    "destination": "Chandrila",
+    "travel_time": 6
+},
+{
+    "origin": "Chandrila",
+    "destination": "Bestine IV",
+    "travel_time": 4
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Chandrila",
+    "travel_time": 4
+},
+{
+    "origin": "Chandrila",
+    "destination": "Trandosha",
+    "travel_time": 6
+},
+{
+    "origin": "Trandosha",
+    "destination": "Chandrila",
+    "travel_time": 6
+},
+{
+    "origin": "Kamino",
+    "destination": "Bestine IV",
+    "travel_time": 5
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Kamino",
+    "travel_time": 5
+},
+{
+    "origin": "Kamino",
+    "destination": "Kashyyyk",
+    "travel_time": 1
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Kamino",
+    "travel_time": 1
+},
+{
+    "origin": "Kamino",
+    "destination": "Tholoth",
+    "travel_time": 1
+},
+{
+    "origin": "Tholoth",
+    "destination": "Kamino",
+    "travel_time": 1
+},
+{
+    "origin": "Champala",
+    "destination": "Chandrila",
+    "travel_time": 5
+},
+{
+    "origin": "Chandrila",
+    "destination": "Champala",
+    "travel_time": 5
+},
+{
+    "origin": "Champala",
+    "destination": "Trandosha",
+    "travel_time": 1
+},
+{
+    "origin": "Trandosha",
+    "destination": "Champala",
+    "travel_time": 1
+},
+{
+    "origin": "Champala",
+    "destination": "Bestine IV",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Champala",
+    "travel_time": 3
+},
+{
+    "origin": "Champala",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Champala",
+    "travel_time": 6
+},
+{
+    "origin": "Serenno",
+    "destination": "Trandosha",
+    "travel_time": 1
+},
+{
+    "origin": "Trandosha",
+    "destination": "Serenno",
+    "travel_time": 1
+},
+{
+    "origin": "Serenno",
+    "destination": "Chandrila",
+    "travel_time": 3
+},
+{
+    "origin": "Chandrila",
+    "destination": "Serenno",
+    "travel_time": 3
+},
+{
+    "origin": "Serenno",
+    "destination": "Geonosis",
+    "travel_time": 1
+},
+{
+    "origin": "Geonosis",
+    "destination": "Serenno",
+    "travel_time": 1
+},
+{
+    "origin": "Serenno",
+    "destination": "Bestine IV",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Serenno",
+    "travel_time": 3
+},
+{
+    "origin": "Mirial",
+    "destination": "Kamino",
+    "travel_time": 1
+},
+{
+    "origin": "Kamino",
+    "destination": "Mirial",
+    "travel_time": 1
+},
+{
+    "origin": "Mirial",
+    "destination": "Skako",
+    "travel_time": 2
+},
+{
+    "origin": "Skako",
+    "destination": "Mirial",
+    "travel_time": 2
+},
+{
+    "origin": "Mirial",
+    "destination": "Trandosha",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Mirial",
+    "travel_time": 4
+},
+{
+    "origin": "Mirial",
+    "destination": "Chandrila",
+    "travel_time": 4
+},
+{
+    "origin": "Chandrila",
+    "destination": "Mirial",
+    "travel_time": 4
+},
+{
+    "origin": "Troiken",
+    "destination": "Kashyyyk",
+    "travel_time": 6
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Troiken",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Troiken",
+    "destination": "Geonosis",
+    "travel_time": 6
+},
+{
+    "origin": "Geonosis",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Kashyyyk",
+    "travel_time": 2
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Polis Massa",
+    "travel_time": 2
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Skako",
+    "travel_time": 2
+},
+{
+    "origin": "Skako",
+    "destination": "Polis Massa",
+    "travel_time": 2
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Geonosis",
+    "travel_time": 3
+},
+{
+    "origin": "Geonosis",
+    "destination": "Polis Massa",
+    "travel_time": 3
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Trandosha",
+    "travel_time": 6
+},
+{
+    "origin": "Trandosha",
+    "destination": "Polis Massa",
+    "travel_time": 6
+},
+{
+    "origin": "Tatooine",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Troiken",
+    "destination": "Tatooine",
+    "travel_time": 6
+},
+{
+    "origin": "Tatooine",
+    "destination": "Mirial",
+    "travel_time": 1
+},
+{
+    "origin": "Mirial",
+    "destination": "Tatooine",
+    "travel_time": 1
+},
+{
+    "origin": "Tatooine",
+    "destination": "Tholoth",
+    "travel_time": 5
+},
+{
+    "origin": "Tholoth",
+    "destination": "Tatooine",
+    "travel_time": 5
+},
+{
+    "origin": "Tatooine",
+    "destination": "Chandrila",
+    "travel_time": 2
+},
+{
+    "origin": "Chandrila",
+    "destination": "Tatooine",
+    "travel_time": 2
+},
+{
+    "origin": "Saleucami",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Saleucami",
+    "travel_time": 6
+},
+{
+    "origin": "Saleucami",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Troiken",
+    "destination": "Saleucami",
+    "travel_time": 6
+},
+{
+    "origin": "Saleucami",
+    "destination": "Bespin",
+    "travel_time": 2
+},
+{
+    "origin": "Bespin",
+    "destination": "Saleucami",
+    "travel_time": 2
+},
+{
+    "origin": "Saleucami",
+    "destination": "Tatooine",
+    "travel_time": 3
+},
+{
+    "origin": "Tatooine",
+    "destination": "Saleucami",
+    "travel_time": 3
+},
+{
+    "origin": "Dathomir",
+    "destination": "Tholoth",
+    "travel_time": 5
+},
+{
+    "origin": "Tholoth",
+    "destination": "Dathomir",
+    "travel_time": 5
+},
+{
+    "origin": "Dathomir",
+    "destination": "Skako",
+    "travel_time": 5
+},
+{
+    "origin": "Skako",
+    "destination": "Dathomir",
+    "travel_time": 5
+},
+{
+    "origin": "Dathomir",
+    "destination": "Geonosis",
+    "travel_time": 1
+},
+{
+    "origin": "Geonosis",
+    "destination": "Dathomir",
+    "travel_time": 1
+},
+{
+    "origin": "Dathomir",
+    "destination": "Saleucami",
+    "travel_time": 1
+},
+{
+    "origin": "Saleucami",
+    "destination": "Dathomir",
+    "travel_time": 1
+},
+{
+    "origin": "Endor",
+    "destination": "Polis Massa",
+    "travel_time": 2
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Endor",
+    "travel_time": 2
+},
+{
+    "origin": "Endor",
+    "destination": "Chandrila",
+    "travel_time": 2
+},
+{
+    "origin": "Chandrila",
+    "destination": "Endor",
+    "travel_time": 2
+},
+{
+    "origin": "Endor",
+    "destination": "Skako",
+    "travel_time": 5
+},
+{
+    "origin": "Skako",
+    "destination": "Endor",
+    "travel_time": 5
+},
+{
+    "origin": "Endor",
+    "destination": "Saleucami",
+    "travel_time": 2
+},
+{
+    "origin": "Saleucami",
+    "destination": "Endor",
+    "travel_time": 2
+},
+{
+    "origin": "Corellia",
+    "destination": "Serenno",
+    "travel_time": 5
+},
+{
+    "origin": "Serenno",
+    "destination": "Corellia",
+    "travel_time": 5
+},
+{
+    "origin": "Corellia",
+    "destination": "Kashyyyk",
+    "travel_time": 6
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Corellia",
+    "travel_time": 6
+},
+{
+    "origin": "Corellia",
+    "destination": "Polis Massa",
+    "travel_time": 1
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Corellia",
+    "travel_time": 1
+},
+{
+    "origin": "Corellia",
+    "destination": "Trandosha",
+    "travel_time": 1
+},
+{
+    "origin": "Trandosha",
+    "destination": "Corellia",
+    "travel_time": 1
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Champala",
+    "travel_time": 2
+},
+{
+    "origin": "Champala",
+    "destination": "Aleen Minor",
+    "travel_time": 2
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Mirial",
+    "travel_time": 5
+},
+{
+    "origin": "Mirial",
+    "destination": "Aleen Minor",
+    "travel_time": 5
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Troiken",
+    "travel_time": 5
+},
+{
+    "origin": "Troiken",
+    "destination": "Aleen Minor",
+    "travel_time": 5
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Chandrila",
+    "travel_time": 4
+},
+{
+    "origin": "Chandrila",
+    "destination": "Aleen Minor",
+    "travel_time": 4
+},
+{
+    "origin": "Socorro",
+    "destination": "Kashyyyk",
+    "travel_time": 4
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Socorro",
+    "travel_time": 4
+},
+{
+    "origin": "Socorro",
+    "destination": "Bespin",
+    "travel_time": 4
+},
+{
+    "origin": "Bespin",
+    "destination": "Socorro",
+    "travel_time": 4
+},
+{
+    "origin": "Socorro",
+    "destination": "Saleucami",
+    "travel_time": 4
+},
+{
+    "origin": "Saleucami",
+    "destination": "Socorro",
+    "travel_time": 4
+},
+{
+    "origin": "Socorro",
+    "destination": "Dathomir",
+    "travel_time": 1
+},
+{
+    "origin": "Dathomir",
+    "destination": "Socorro",
+    "travel_time": 1
+},
+{
+    "origin": "Iridonia",
+    "destination": "Kashyyyk",
+    "travel_time": 3
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Iridonia",
+    "travel_time": 3
+},
+{
+    "origin": "Iridonia",
+    "destination": "Chandrila",
+    "travel_time": 2
+},
+{
+    "origin": "Chandrila",
+    "destination": "Iridonia",
+    "travel_time": 2
+},
+{
+    "origin": "Iridonia",
+    "destination": "Ojom",
+    "travel_time": 5
+},
+{
+    "origin": "Ojom",
+    "destination": "Iridonia",
+    "travel_time": 5
+},
+{
+    "origin": "Dagobah",
+    "destination": "Aleen Minor",
+    "travel_time": 5
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Dagobah",
+    "travel_time": 5
+},
+{
+    "origin": "Dagobah",
+    "destination": "Iridonia",
+    "travel_time": 2
+},
+{
+    "origin": "Iridonia",
+    "destination": "Dagobah",
+    "travel_time": 2
+},
+{
+    "origin": "Dagobah",
+    "destination": "Ojom",
+    "travel_time": 3
+},
+{
+    "origin": "Ojom",
+    "destination": "Dagobah",
+    "travel_time": 3
+},
+{
+    "origin": "Dagobah",
+    "destination": "Serenno",
+    "travel_time": 4
+},
+{
+    "origin": "Serenno",
+    "destination": "Dagobah",
+    "travel_time": 4
+},
+{
+    "origin": "Sullust",
+    "destination": "Kamino",
+    "travel_time": 6
+},
+{
+    "origin": "Kamino",
+    "destination": "Sullust",
+    "travel_time": 6
+},
+{
+    "origin": "Sullust",
+    "destination": "Geonosis",
+    "travel_time": 2
+},
+{
+    "origin": "Geonosis",
+    "destination": "Sullust",
+    "travel_time": 2
+},
+{
+    "origin": "Sullust",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Sullust",
+    "travel_time": 6
+},
+{
+    "origin": "Umbara",
+    "destination": "Polis Massa",
+    "travel_time": 4
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Umbara",
+    "travel_time": 4
+},
+{
+    "origin": "Umbara",
+    "destination": "Bestine IV",
+    "travel_time": 6
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Umbara",
+    "travel_time": 6
+},
+{
+    "origin": "Umbara",
+    "destination": "Troiken",
+    "travel_time": 5
+},
+{
+    "origin": "Troiken",
+    "destination": "Umbara",
+    "travel_time": 5
+},
+{
+    "origin": "Umbara",
+    "destination": "Saleucami",
+    "travel_time": 1
+},
+{
+    "origin": "Saleucami",
+    "destination": "Umbara",
+    "travel_time": 1
+},
+{
+    "origin": "Stewjon",
+    "destination": "Bestine IV",
+    "travel_time": 2
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Stewjon",
+    "travel_time": 2
+},
+{
+    "origin": "Stewjon",
+    "destination": "Sullust",
+    "travel_time": 5
+},
+{
+    "origin": "Sullust",
+    "destination": "Stewjon",
+    "travel_time": 5
+},
+{
+    "origin": "Stewjon",
+    "destination": "Tholoth",
+    "travel_time": 5
+},
+{
+    "origin": "Tholoth",
+    "destination": "Stewjon",
+    "travel_time": 5
+},
+{
+    "origin": "Stewjon",
+    "destination": "Geonosis",
+    "travel_time": 3
+},
+{
+    "origin": "Geonosis",
+    "destination": "Stewjon",
+    "travel_time": 3
+},
+{
+    "origin": "Utapau",
+    "destination": "Dathomir",
+    "travel_time": 3
+},
+{
+    "origin": "Dathomir",
+    "destination": "Utapau",
+    "travel_time": 3
+},
+{
+    "origin": "Utapau",
+    "destination": "Skako",
+    "travel_time": 2
+},
+{
+    "origin": "Skako",
+    "destination": "Utapau",
+    "travel_time": 2
+},
+{
+    "origin": "Utapau",
+    "destination": "Geonosis",
+    "travel_time": 3
+},
+{
+    "origin": "Geonosis",
+    "destination": "Utapau",
+    "travel_time": 3
+},
+{
+    "origin": "Utapau",
+    "destination": "Tatooine",
+    "travel_time": 6
+},
+{
+    "origin": "Tatooine",
+    "destination": "Utapau",
+    "travel_time": 6
+},
+{
+    "origin": "Yavin IV",
+    "destination": "Chandrila",
+    "travel_time": 3
+},
+{
+    "origin": "Chandrila",
+    "destination": "Yavin IV",
+    "travel_time": 3
+},
+{
+    "origin": "Yavin IV",
+    "destination": "Polis Massa",
+    "travel_time": 1
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Yavin IV",
+    "travel_time": 1
+},
+{
+    "origin": "Yavin IV",
+    "destination": "Mirial",
+    "travel_time": 2
+},
+{
+    "origin": "Mirial",
+    "destination": "Yavin IV",
+    "travel_time": 2
+},
+{
+    "origin": "Toydaria",
+    "destination": "Aleen Minor",
+    "travel_time": 1
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Toydaria",
+    "travel_time": 1
+},
+{
+    "origin": "Toydaria",
+    "destination": "Sullust",
+    "travel_time": 6
+},
+{
+    "origin": "Sullust",
+    "destination": "Toydaria",
+    "travel_time": 6
+},
+{
+    "origin": "Toydaria",
+    "destination": "Bestine IV",
+    "travel_time": 2
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Toydaria",
+    "travel_time": 2
+},
+{
+    "origin": "Toydaria",
+    "destination": "Endor",
+    "travel_time": 3
+},
+{
+    "origin": "Endor",
+    "destination": "Toydaria",
+    "travel_time": 3
+},
+{
+    "origin": "Zolan",
+    "destination": "Bespin",
+    "travel_time": 1
+},
+{
+    "origin": "Bespin",
+    "destination": "Zolan",
+    "travel_time": 1
+},
+{
+    "origin": "Zolan",
+    "destination": "Corellia",
+    "travel_time": 3
+},
+{
+    "origin": "Corellia",
+    "destination": "Zolan",
+    "travel_time": 3
+},
+{
+    "origin": "Zolan",
+    "destination": "Chandrila",
+    "travel_time": 6
+},
+{
+    "origin": "Chandrila",
+    "destination": "Zolan",
+    "travel_time": 6
+},
+{
+    "origin": "Concord Dawn",
+    "destination": "Trandosha",
+    "travel_time": 6
+},
+{
+    "origin": "Trandosha",
+    "destination": "Concord Dawn",
+    "travel_time": 6
+},
+{
+    "origin": "Concord Dawn",
+    "destination": "Bestine IV",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Concord Dawn",
+    "travel_time": 3
+},
+{
+    "origin": "Concord Dawn",
+    "destination": "Utapau",
+    "travel_time": 1
+},
+{
+    "origin": "Utapau",
+    "destination": "Concord Dawn",
+    "travel_time": 1
+},
+{
+    "origin": "Concord Dawn",
+    "destination": "Tholoth",
+    "travel_time": 5
+},
+{
+    "origin": "Tholoth",
+    "destination": "Concord Dawn",
+    "travel_time": 5
+},
+{
+    "origin": "Tund",
+    "destination": "Troiken",
+    "travel_time": 6
+},
+{
+    "origin": "Troiken",
+    "destination": "Tund",
+    "travel_time": 6
+},
+{
+    "origin": "Tund",
+    "destination": "Skako",
+    "travel_time": 5
+},
+{
+    "origin": "Skako",
+    "destination": "Tund",
+    "travel_time": 5
+},
+{
+    "origin": "Tund",
+    "destination": "Ojom",
+    "travel_time": 1
+},
+{
+    "origin": "Ojom",
+    "destination": "Tund",
+    "travel_time": 1
+},
+{
+    "origin": "Tund",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Tholoth",
+    "destination": "Tund",
+    "travel_time": 3
+},
+{
+    "origin": "Ryloth",
+    "destination": "Iridonia",
+    "travel_time": 4
+},
+{
+    "origin": "Iridonia",
+    "destination": "Ryloth",
+    "travel_time": 4
+},
+{
+    "origin": "Ryloth",
+    "destination": "Utapau",
+    "travel_time": 5
+},
+{
+    "origin": "Utapau",
+    "destination": "Ryloth",
+    "travel_time": 5
+},
+{
+    "origin": "Ryloth",
+    "destination": "Ojom",
+    "travel_time": 3
+},
+{
+    "origin": "Ojom",
+    "destination": "Ryloth",
+    "travel_time": 3
+},
+{
+    "origin": "Ryloth",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Tholoth",
+    "destination": "Ryloth",
+    "travel_time": 3
+},
+{
+    "origin": "Mustafar",
+    "destination": "Troiken",
+    "travel_time": 3
+},
+{
+    "origin": "Troiken",
+    "destination": "Mustafar",
+    "travel_time": 3
+},
+{
+    "origin": "Mustafar",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Mustafar",
+    "travel_time": 6
+},
+{
+    "origin": "Mustafar",
+    "destination": "Ojom",
+    "travel_time": 4
+},
+{
+    "origin": "Ojom",
+    "destination": "Mustafar",
+    "travel_time": 4
+},
+{
+    "origin": "Mustafar",
+    "destination": "Kashyyyk",
+    "travel_time": 5
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Mustafar",
+    "travel_time": 5
+},
+{
+    "origin": "Cerea",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Cerea",
+    "travel_time": 6
+},
+{
+    "origin": "Cerea",
+    "destination": "Bespin",
+    "travel_time": 3
+},
+{
+    "origin": "Bespin",
+    "destination": "Cerea",
+    "travel_time": 3
+},
+{
+    "origin": "Cerea",
+    "destination": "Troiken",
+    "travel_time": 5
+},
+{
+    "origin": "Troiken",
+    "destination": "Cerea",
+    "travel_time": 5
+},
+{
+    "origin": "Mon Cala",
+    "destination": "Bestine IV",
+    "travel_time": 2
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Mon Cala",
+    "travel_time": 2
+},
+{
+    "origin": "Mon Cala",
+    "destination": "Kashyyyk",
+    "travel_time": 4
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Mon Cala",
+    "travel_time": 4
+},
+{
+    "origin": "Mon Cala",
+    "destination": "Polis Massa",
+    "travel_time": 4
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Mon Cala",
+    "travel_time": 4
+},
+{
+    "origin": "Mon Cala",
+    "destination": "Utapau",
+    "travel_time": 1
+},
+{
+    "origin": "Utapau",
+    "destination": "Mon Cala",
+    "travel_time": 1
+},
+{
+    "origin": "Quermia",
+    "destination": "Concord Dawn",
+    "travel_time": 4
+},
+{
+    "origin": "Concord Dawn",
+    "destination": "Quermia",
+    "travel_time": 4
+},
+{
+    "origin": "Quermia",
+    "destination": "Chandrila",
+    "travel_time": 4
+},
+{
+    "origin": "Chandrila",
+    "destination": "Quermia",
+    "travel_time": 4
+},
+{
+    "origin": "Quermia",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Tholoth",
+    "destination": "Quermia",
+    "travel_time": 3
+},
+{
+    "origin": "Quermia",
+    "destination": "Yavin IV",
+    "travel_time": 4
+},
+{
+    "origin": "Yavin IV",
+    "destination": "Quermia",
+    "travel_time": 4
+},
+{
+    "origin": "Jakku",
+    "destination": "Bespin",
+    "travel_time": 5
+},
+{
+    "origin": "Bespin",
+    "destination": "Jakku",
+    "travel_time": 5
+},
+{
+    "origin": "Jakku",
+    "destination": "Champala",
+    "travel_time": 2
+},
+{
+    "origin": "Champala",
+    "destination": "Jakku",
+    "travel_time": 2
+},
+{
+    "origin": "Jakku",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Tholoth",
+    "destination": "Jakku",
+    "travel_time": 3
+},
+{
+    "origin": "Jakku",
+    "destination": "Trandosha",
+    "travel_time": 5
+},
+{
+    "origin": "Trandosha",
+    "destination": "Jakku",
+    "travel_time": 5
+},
+{
+    "origin": "Coruscant",
+    "destination": "Trandosha",
+    "travel_time": 1
+},
+{
+    "origin": "Trandosha",
+    "destination": "Coruscant",
+    "travel_time": 1
+},
+{
+    "origin": "Coruscant",
+    "destination": "Toydaria",
+    "travel_time": 4
+},
+{
+    "origin": "Toydaria",
+    "destination": "Coruscant",
+    "travel_time": 4
+},
+{
+    "origin": "Coruscant",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Coruscant",
+    "travel_time": 6
+},
+{
+    "origin": "Coruscant",
+    "destination": "Serenno",
+    "travel_time": 3
+},
+{
+    "origin": "Serenno",
+    "destination": "Coruscant",
+    "travel_time": 3
+},
+{
+    "origin": "Nal Hutta",
+    "destination": "Champala",
+    "travel_time": 2
+},
+{
+    "origin": "Champala",
+    "destination": "Nal Hutta",
+    "travel_time": 2
+},
+{
+    "origin": "Nal Hutta",
+    "destination": "Geonosis",
+    "travel_time": 4
+},
+{
+    "origin": "Geonosis",
+    "destination": "Nal Hutta",
+    "travel_time": 4
+},
+{
+    "origin": "Nal Hutta",
+    "destination": "Troiken",
+    "travel_time": 4
+},
+{
+    "origin": "Troiken",
+    "destination": "Nal Hutta",
+    "travel_time": 4
+},
+{
+    "origin": "Nal Hutta",
+    "destination": "Tholoth",
+    "travel_time": 6
+},
+{
+    "origin": "Tholoth",
+    "destination": "Nal Hutta",
+    "travel_time": 6
+},
+{
+    "origin": "Dantooine",
+    "destination": "Kashyyyk",
+    "travel_time": 6
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Dantooine",
+    "travel_time": 6
+},
+{
+    "origin": "Dantooine",
+    "destination": "Bespin",
+    "travel_time": 3
+},
+{
+    "origin": "Bespin",
+    "destination": "Dantooine",
+    "travel_time": 3
+},
+{
+    "origin": "Dantooine",
+    "destination": "Kamino",
+    "travel_time": 6
+},
+{
+    "origin": "Kamino",
+    "destination": "Dantooine",
+    "travel_time": 6
+},
+{
+    "origin": "Glee Anselm",
+    "destination": "Kashyyyk",
+    "travel_time": 1
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Glee Anselm",
+    "travel_time": 1
+},
+{
+    "origin": "Glee Anselm",
+    "destination": "Ryloth",
+    "travel_time": 6
+},
+{
+    "origin": "Ryloth",
+    "destination": "Glee Anselm",
+    "travel_time": 6
+},
+{
+    "origin": "Glee Anselm",
+    "destination": "Dagobah",
+    "travel_time": 2
+},
+{
+    "origin": "Dagobah",
+    "destination": "Glee Anselm",
+    "travel_time": 2
+},
+{
+    "origin": "Glee Anselm",
+    "destination": "Bestine IV",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Glee Anselm",
+    "travel_time": 3
+},
+{
+    "origin": "Alderaan",
+    "destination": "Trandosha",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Alderaan",
+    "travel_time": 4
+},
+{
+    "origin": "Alderaan",
+    "destination": "Polis Massa",
+    "travel_time": 6
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Alderaan",
+    "travel_time": 6
+},
+{
+    "origin": "Alderaan",
+    "destination": "Coruscant",
+    "travel_time": 4
+},
+{
+    "origin": "Coruscant",
+    "destination": "Alderaan",
+    "travel_time": 4
+},
+{
+    "origin": "Alderaan",
+    "destination": "Bespin",
+    "travel_time": 6
+},
+{
+    "origin": "Bespin",
+    "destination": "Alderaan",
+    "travel_time": 6
+},
+{
+    "origin": "Muunilinst",
+    "destination": "Kashyyyk",
+    "travel_time": 3
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Muunilinst",
+    "travel_time": 3
+},
+{
+    "origin": "Muunilinst",
+    "destination": "Serenno",
+    "travel_time": 4
+},
+{
+    "origin": "Serenno",
+    "destination": "Muunilinst",
+    "travel_time": 4
+},
+{
+    "origin": "Muunilinst",
+    "destination": "Geonosis",
+    "travel_time": 4
+},
+{
+    "origin": "Geonosis",
+    "destination": "Muunilinst",
+    "travel_time": 4
+},
+{
+    "origin": "Muunilinst",
+    "destination": "Jakku",
+    "travel_time": 4
+},
+{
+    "origin": "Jakku",
+    "destination": "Muunilinst",
+    "travel_time": 4
+},
+{
+    "origin": "Mygeeto",
+    "destination": "Bespin",
+    "travel_time": 5
+},
+{
+    "origin": "Bespin",
+    "destination": "Mygeeto",
+    "travel_time": 5
+},
+{
+    "origin": "Mygeeto",
+    "destination": "Ojom",
+    "travel_time": 2
+},
+{
+    "origin": "Ojom",
+    "destination": "Mygeeto",
+    "travel_time": 2
+},
+{
+    "origin": "Mygeeto",
+    "destination": "Tholoth",
+    "travel_time": 4
+},
+{
+    "origin": "Tholoth",
+    "destination": "Mygeeto",
+    "travel_time": 4
+},
+{
+    "origin": "Mygeeto",
+    "destination": "Polis Massa",
+    "travel_time": 4
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Mygeeto",
+    "travel_time": 4
+},
+{
+    "origin": "Cato Neimoidia",
+    "destination": "Serenno",
+    "travel_time": 1
+},
+{
+    "origin": "Serenno",
+    "destination": "Cato Neimoidia",
+    "travel_time": 1
+},
+{
+    "origin": "Cato Neimoidia",
+    "destination": "Polis Massa",
+    "travel_time": 6
+},
+{
+    "origin": "Polis Massa",
+    "destination": "Cato Neimoidia",
+    "travel_time": 6
+},
+{
+    "origin": "Cato Neimoidia",
+    "destination": "Zolan",
+    "travel_time": 6
+},
+{
+    "origin": "Zolan",
+    "destination": "Cato Neimoidia",
+    "travel_time": 6
+},
+{
+    "origin": "Cato Neimoidia",
+    "destination": "Mirial",
+    "travel_time": 4
+},
+{
+    "origin": "Mirial",
+    "destination": "Cato Neimoidia",
+    "travel_time": 4
+},
+{
+    "origin": "Rodia",
+    "destination": "Zolan",
+    "travel_time": 1
+},
+{
+    "origin": "Zolan",
+    "destination": "Rodia",
+    "travel_time": 1
+},
+{
+    "origin": "Rodia",
+    "destination": "Utapau",
+    "travel_time": 6
+},
+{
+    "origin": "Utapau",
+    "destination": "Rodia",
+    "travel_time": 6
+},
+{
+    "origin": "Rodia",
+    "destination": "Dathomir",
+    "travel_time": 1
+},
+{
+    "origin": "Dathomir",
+    "destination": "Rodia",
+    "travel_time": 1
+},
+{
+    "origin": "Rodia",
+    "destination": "Iridonia",
+    "travel_time": 2
+},
+{
+    "origin": "Iridonia",
+    "destination": "Rodia",
+    "travel_time": 2
+},
+{
+    "origin": "Ord Mantell",
+    "destination": "Skako",
+    "travel_time": 5
+},
+{
+    "origin": "Skako",
+    "destination": "Ord Mantell",
+    "travel_time": 5
+},
+{
+    "origin": "Ord Mantell",
+    "destination": "Kashyyyk",
+    "travel_time": 3
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Ord Mantell",
+    "travel_time": 3
+},
+{
+    "origin": "Ord Mantell",
+    "destination": "Tholoth",
+    "travel_time": 4
+},
+{
+    "origin": "Tholoth",
+    "destination": "Ord Mantell",
+    "travel_time": 4
+},
+{
+    "origin": "Haruun Kal",
+    "destination": "Jakku",
+    "travel_time": 4
+},
+{
+    "origin": "Jakku",
+    "destination": "Haruun Kal",
+    "travel_time": 4
+},
+{
+    "origin": "Haruun Kal",
+    "destination": "Trandosha",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Haruun Kal",
+    "travel_time": 4
+},
+{
+    "origin": "Haruun Kal",
+    "destination": "Aleen Minor",
+    "travel_time": 4
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Haruun Kal",
+    "travel_time": 4
+},
+{
+    "origin": "Haruun Kal",
+    "destination": "Skako",
+    "travel_time": 6
+},
+{
+    "origin": "Skako",
+    "destination": "Haruun Kal",
+    "travel_time": 6
+},
+{
+    "origin": "Iktotch",
+    "destination": "Skako",
+    "travel_time": 2
+},
+{
+    "origin": "Skako",
+    "destination": "Iktotch",
+    "travel_time": 2
+},
+{
+    "origin": "Iktotch",
+    "destination": "Quermia",
+    "travel_time": 6
+},
+{
+    "origin": "Quermia",
+    "destination": "Iktotch",
+    "travel_time": 6
+},
+{
+    "origin": "Iktotch",
+    "destination": "Bestine IV",
+    "travel_time": 5
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Iktotch",
+    "travel_time": 5
+},
+{
+    "origin": "Iktotch",
+    "destination": "Tholoth",
+    "travel_time": 5
+},
+{
+    "origin": "Tholoth",
+    "destination": "Iktotch",
+    "travel_time": 5
+},
+{
+    "origin": "Naboo",
+    "destination": "Chandrila",
+    "travel_time": 5
+},
+{
+    "origin": "Chandrila",
+    "destination": "Naboo",
+    "travel_time": 5
+},
+{
+    "origin": "Naboo",
+    "destination": "Ryloth",
+    "travel_time": 1
+},
+{
+    "origin": "Ryloth",
+    "destination": "Naboo",
+    "travel_time": 1
+},
+{
+    "origin": "Naboo",
+    "destination": "Rodia",
+    "travel_time": 5
+},
+{
+    "origin": "Rodia",
+    "destination": "Naboo",
+    "travel_time": 5
+},
+{
+    "origin": "Naboo",
+    "destination": "Kamino",
+    "travel_time": 4
+},
+{
+    "origin": "Kamino",
+    "destination": "Naboo",
+    "travel_time": 4
+},
+{
+    "origin": "Dorin",
+    "destination": "Serenno",
+    "travel_time": 4
+},
+{
+    "origin": "Serenno",
+    "destination": "Dorin",
+    "travel_time": 4
+},
+{
+    "origin": "Dorin",
+    "destination": "Geonosis",
+    "travel_time": 2
+},
+{
+    "origin": "Geonosis",
+    "destination": "Dorin",
+    "travel_time": 2
+},
+{
+    "origin": "Dorin",
+    "destination": "Skako",
+    "travel_time": 1
+},
+{
+    "origin": "Skako",
+    "destination": "Dorin",
+    "travel_time": 1
+},
+{
+    "origin": "Vulpter",
+    "destination": "Rodia",
+    "travel_time": 4
+},
+{
+    "origin": "Rodia",
+    "destination": "Vulpter",
+    "travel_time": 4
+},
+{
+    "origin": "Vulpter",
+    "destination": "Ojom",
+    "travel_time": 2
+},
+{
+    "origin": "Ojom",
+    "destination": "Vulpter",
+    "travel_time": 2
+},
+{
+    "origin": "Vulpter",
+    "destination": "Troiken",
+    "travel_time": 1
+},
+{
+    "origin": "Troiken",
+    "destination": "Vulpter",
+    "travel_time": 1
+},
+{
+    "origin": "Vulpter",
+    "destination": "Socorro",
+    "travel_time": 2
+},
+{
+    "origin": "Socorro",
+    "destination": "Vulpter",
+    "travel_time": 2
+},
+{
+    "origin": "Hoth",
+    "destination": "Skako",
+    "travel_time": 6
+},
+{
+    "origin": "Skako",
+    "destination": "Hoth",
+    "travel_time": 6
+},
+{
+    "origin": "Hoth",
+    "destination": "Serenno",
+    "travel_time": 6
+},
+{
+    "origin": "Serenno",
+    "destination": "Hoth",
+    "travel_time": 6
+},
+{
+    "origin": "Hoth",
+    "destination": "Mon Cala",
+    "travel_time": 2
+},
+{
+    "origin": "Mon Cala",
+    "destination": "Hoth",
+    "travel_time": 2
+},
+{
+    "origin": "Hoth",
+    "destination": "Bestine IV",
+    "travel_time": 3
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Hoth",
+    "travel_time": 3
+},
+{
+    "origin": "Malastare",
+    "destination": "Mustafar",
+    "travel_time": 1
+},
+{
+    "origin": "Mustafar",
+    "destination": "Malastare",
+    "travel_time": 1
+},
+{
+    "origin": "Malastare",
+    "destination": "Aleen Minor",
+    "travel_time": 6
+},
+{
+    "origin": "Aleen Minor",
+    "destination": "Malastare",
+    "travel_time": 6
+},
+{
+    "origin": "Malastare",
+    "destination": "Zolan",
+    "travel_time": 4
+},
+{
+    "origin": "Zolan",
+    "destination": "Malastare",
+    "travel_time": 4
+},
+{
+    "origin": "Shili",
+    "destination": "Bestine IV",
+    "travel_time": 2
+},
+{
+    "origin": "Bestine IV",
+    "destination": "Shili",
+    "travel_time": 2
+},
+{
+    "origin": "Shili",
+    "destination": "Tholoth",
+    "travel_time": 1
+},
+{
+    "origin": "Tholoth",
+    "destination": "Shili",
+    "travel_time": 1
+},
+{
+    "origin": "Shili",
+    "destination": "Chandrila",
+    "travel_time": 6
+},
+{
+    "origin": "Chandrila",
+    "destination": "Shili",
+    "travel_time": 6
+},
+{
+    "origin": "Eriadu",
+    "destination": "Haruun Kal",
+    "travel_time": 5
+},
+{
+    "origin": "Haruun Kal",
+    "destination": "Eriadu",
+    "travel_time": 5
+},
+{
+    "origin": "Eriadu",
+    "destination": "Serenno",
+    "travel_time": 6
+},
+{
+    "origin": "Serenno",
+    "destination": "Eriadu",
+    "travel_time": 6
+},
+{
+    "origin": "Eriadu",
+    "destination": "Trandosha",
+    "travel_time": 4
+},
+{
+    "origin": "Trandosha",
+    "destination": "Eriadu",
+    "travel_time": 4
+},
+{
+    "origin": "Kalee",
+    "destination": "Ryloth",
+    "travel_time": 2
+},
+{
+    "origin": "Ryloth",
+    "destination": "Kalee",
+    "travel_time": 2
+},
+{
+    "origin": "Kalee",
+    "destination": "Nal Hutta",
+    "travel_time": 6
+},
+{
+    "origin": "Nal Hutta",
+    "destination": "Kalee",
+    "travel_time": 6
+},
+{
+    "origin": "Kalee",
+    "destination": "Umbara",
+    "travel_time": 4
+},
+{
+    "origin": "Umbara",
+    "destination": "Kalee",
+    "travel_time": 4
+},
+{
+    "origin": "Kalee",
+    "destination": "Kashyyyk",
+    "travel_time": 2
+},
+{
+    "origin": "Kashyyyk",
+    "destination": "Kalee",
+    "travel_time": 2
+},
+{
+    "origin": "Felucia",
+    "destination": "Tholoth",
+    "travel_time": 3
+},
+{
+    "origin": "Tholoth",
+    "destination": "Felucia",
+    "travel_time": 3
+},
+{
+    "origin": "Felucia",
+    "destination": "Glee Anselm",
+    "travel_time": 6
+},
+{
+    "origin": "Glee Anselm",
+    "destination": "Felucia",
+    "travel_time": 6
+},
+{
+    "origin": "Felucia",
+    "destination": "Shili",
+    "travel_time": 4
+},
+{
+    "origin": "Shili",
+    "destination": "Felucia",
+    "travel_time": 4
+},
+{
+    "origin": "Felucia",
+    "destination": "Umbara",
+    "travel_time": 4
+},
+{
+    "origin": "Umbara",
+    "destination": "Felucia",
+    "travel_time": 4
+},
+]
