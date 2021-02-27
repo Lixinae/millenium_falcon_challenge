@@ -15,3 +15,4 @@ Avoir chaque planète relié à une autre dans les 2 sens, de tel sorte à ce qu
 (Le problème principal viens des combinaisons des planètes où l'on peut s'arrêter)
 - La pour le moment quand il commence à y avoir trop de combinaison ça prend beaucoup trop de temps
 - La complexité est exponentielle actuellement
+- Idéalement il faudrait faire évoluer l'algorithme pour memoiser les éléments et gagner du temps de calcul

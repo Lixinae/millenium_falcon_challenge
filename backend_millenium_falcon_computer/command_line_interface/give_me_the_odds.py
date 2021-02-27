@@ -2,9 +2,8 @@ import json
 import os
 import sys
 
-from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir, generated_data_dir
+from backend_millenium_falcon_computer.configuration.configuration import config, resource_dir
 from backend_millenium_falcon_computer.database import init_db
-from backend_millenium_falcon_computer.database.query_wrappers import QueryWrappers
 from backend_millenium_falcon_computer.odds_success_calculator import calculator
 
 
@@ -14,7 +13,6 @@ def read_json_file(empire_json_file_: json):
     return json_empire_
 
 
-# Todo -> Cli
 # Prend 2 fichier en entrée (les 2 json) give-me-the-odds example1/millenium-falcon.json example1/empire.json
 if __name__ == '__main__':
 
@@ -22,11 +20,11 @@ if __name__ == '__main__':
     # millenium_json_config_file = os.path.join(resource_dir, "test_data/anything_can_go/millenium-falcon.json")
     # empire_json_file = os.path.join(resource_dir, "test_data/anything_can_go/empire.json")
 
-    # millenium_json_config_file = os.path.join(resource_dir, "test_data/example3/millenium-falcon.json")
-    # empire_json_file = os.path.join(resource_dir, "test_data/example3/empire.json")
+    millenium_json_config_file = os.path.join(resource_dir, "test_data/example3/millenium-falcon.json")
+    empire_json_file = os.path.join(resource_dir, "test_data/example3/empire.json")
 
-    millenium_json_config_file = os.path.join(generated_data_dir, "millenium-falcon.json")
-    empire_json_file = os.path.join(generated_data_dir, "empire.json")
+    # millenium_json_config_file = os.path.join(generated_data_dir, "millenium-falcon.json")
+    # empire_json_file = os.path.join(generated_data_dir, "empire.json")
 
     if len(sys.argv) == 3:
         millenium_json_config_file = sys.argv[1]

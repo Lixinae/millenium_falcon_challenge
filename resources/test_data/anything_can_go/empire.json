@@ -1,6 +1,22 @@
 {
-  "countdown": 100,
+  "countdown": 9,
   "bounty_hunters": [
+    {
+      "planet": "Hoth",
+      "day": 2
+    },
+    {
+      "planet": "Hoth",
+      "day": 3
+    },
+    {
+      "planet": "Hoth",
+      "day": 4
+    },
+    {
+      "planet": "Coruscant",
+      "day": 5
+    },
     {
       "planet": "Hoth",
       "day": 6
@@ -10,8 +26,28 @@
       "day": 7
     },
     {
-      "planet": "Hoth",
-      "day": 8
+      "planet": "Coruscant",
+      "day": 2
+    },
+    {
+      "planet": "Coruscant",
+      "day": 3
+    },
+    {
+      "planet": "Coruscant",
+      "day": 4
+    },
+    {
+      "planet": "Coruscant",
+      "day": 5
+    },
+    {
+      "planet": "Coruscant",
+      "day": 6
+    },
+    {
+      "planet": "Coruscant",
+      "day": 7
     }
   ]
 }
