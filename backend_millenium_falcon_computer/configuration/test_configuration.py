@@ -32,7 +32,7 @@ class TestConfigurationApp(TestCase):
         self.assertTrue(self.config._routes_db == "universe.db")
 
     def test_init_from_json_file_all_ok(self):
-        json_config_file_location = os.path.join(resource_dir, "test_data/anything_can_go/millenium-falcon.json")
+        json_config_file_location = os.path.join(resource_dir, "test_data/example1/millenium-falcon.json")
         json_config_file_location_folder = os.path.dirname(json_config_file_location)
         self.config.init_from_json_file(json_config_file_location)
         self.assertTrue(self.config.autonomy == 12)
