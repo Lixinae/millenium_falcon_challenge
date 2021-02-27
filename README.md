@@ -25,26 +25,26 @@ Hint: To avoid the Bounty Hunters, the Millenium Falcon can land on a planet wit
 
 The mathematical formula to compute the total probability of being captured is:
 
-![formula](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/formula-k.png)
+![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-k.png)
 
 where k is the number of times the Bounty Hunter tried to capture the Millenium Falcon.
 
 For example, the probability to get captured is:
    - if the Millenium Falcon travels via 1 planet with bounty hunters:
   
-   ![formula](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/formula-90.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-90.png)
    
    - if the Millenium Falcon travels via 1 planet with bounty hunters and refuels on this planet:
 
-   ![formula](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/formula-2.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-2.png)
 
    - if the Millenium Falcon travels via 2 planets with bounty hunters:
 
-   ![formula](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/formula-2.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-2.png)
 
    - if the Millenium Falcon travels via 3 planets with bounty hunters:
 
-   ![formula](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/formula-3.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-3.png)
 
 
 ## The mission
