@@ -1,5 +1,4 @@
 import json
-from itertools import combinations
 from typing import List, Dict
 
 from backend_millenium_falcon_computer.configuration.configuration import config
@@ -115,8 +114,10 @@ def combinations_falcon_data(trajectory,
                              autonomy,
                              empire_countdown,
                              json_database,
-                             trajectories_time_and_caught_proba):
+                             trajectories_time_and_caught_proba) -> None:
     """
+    Calcul toutes les combinaisons possible pour le nombre d'arrêts / refuel souhaité et
+    injecte les informations dans la liste "trajectories_time_and_caught_proba"
 
     :param trajectory: La trajectoire actuelle sur laquelle test la combinaison
     :param taille_combi: Taille de la combinaison voulu
@@ -125,14 +126,12 @@ def combinations_falcon_data(trajectory,
     :param autonomy: autonomy: L'autonomie du faucon millenium
     :param empire_countdown: Le timer à partir duquel la missions est considéré comme un echec
     :param json_database: La base de donnée au format json pour eviter les appels à la base de données
-    :param trajectories_time_and_caught_proba:
-    :return:
+    :param trajectories_time_and_caught_proba: La liste avec toutes les informations sur tous les trajets possible
     """
-    result = []
     pool = tuple(trajectory[:len(trajectory) - 1])
     size_pool = len(pool)
     if taille_combi > size_pool:
-        return result
+        return
     indices = [x for x in range(taille_combi)]
 
     combinaison = tuple(pool[i] for i in indices)
@@ -143,7 +142,7 @@ def combinations_falcon_data(trajectory,
                                                      autonomy,
                                                      json_database,
                                                      trajectory)
-    if data not in result:
+    if data not in trajectories_time_and_caught_proba:
         if data["total_time"] <= empire_countdown:
             trajectories_time_and_caught_proba.append(data)
     while True:
@@ -162,7 +161,7 @@ def combinations_falcon_data(trajectory,
                                                          autonomy,
                                                          json_database,
                                                          trajectory)
-        if data not in result:
+        if data not in trajectories_time_and_caught_proba:
             if data["total_time"] <= empire_countdown:
                 trajectories_time_and_caught_proba.append(data)
 
@@ -234,7 +233,9 @@ def calculate_trajectorie_odds_no_refuel(bounty_hunters,
     Et calcule la probabilité d'echec pour le trajet donné, où il n'y pas besoin de remettre du carburant
     :param bounty_hunters: Les planètes où se trouve les chasseurs de primes et à quel moment
     :param empire_countdown: Le timer à partir duquel la missions est considérer comme un echec
-    :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
+    :param trajectories_time_and_caught_proba: La liste de toute les trajectoires, avec
+                                                les différentes combinaisons d'arrêt,
+                                                leur taux d'echec et le temps total mis
     :param trajectory: La trajectoire actuelle
     :param json_database: Les données json des planètes
     :param caught_probability_values: Tableau des probabilité possible de capture
@@ -270,6 +271,11 @@ def calculate_trajectorie_odds_no_refuel(bounty_hunters,
 
 
 def caught_probability(count_time_encounter_bounty_hunters):
+    """
+    Calcule la probabilité d'être pris
+    :param count_time_encounter_bounty_hunters: Le nombre de fois où l'on rencontre des chasseurs de primes
+    :return: La probabilité d'être capturé
+    """
     caught_proba = 0
     for i in range(0, count_time_encounter_bounty_hunters):
         num = pow(9, i)
@@ -282,6 +288,7 @@ def find_best_proba_success(trajectories_time_and_caught_proba) -> Dict:
     """
     Trie la liste des trajectoires, par rapport à leur taux d'echec
     Et renvoie le 1er élement, celui qui a le taux d'echec le plus faible
+    Ajoute également un champs "odds_of_success" au résultat pour indiquer les chances de succès
     :param trajectories_time_and_caught_proba: La liste de toute les trajectoires avec les différentes combinaisons d'arrêt et leur taux d'echec
     :return: La trajectoire ayant le taux d'echec le plus bas
     """
@@ -296,6 +303,8 @@ def find_best_proba_success(trajectories_time_and_caught_proba) -> Dict:
 
     trajectories_time_and_caught_proba.sort(key=take_caught_proba)
     lowest_caught_proba = trajectories_time_and_caught_proba[0]["caught_proba"]
+    # Ajoute un champs "odds_of_success" au résultat
+    # On ne l'ajoute qu'a ce moment pour éviter plein de calcul inutile pendant les parcours
     trajectories_time_and_caught_proba[0]["odds_of_success"] = (1 - lowest_caught_proba) * 100
     return trajectories_time_and_caught_proba[0]
 
@@ -324,7 +333,8 @@ def get_travel_time_between(origin, destination, json_database) -> int:
     :param destination: La planète destination
     :return: Le temps de trajet entre origin et destination
     """
-    val = next((planet for planet in json_database if planet.origin == origin and planet.destination == destination), None)
+    val = next((planet for planet in json_database if planet.origin == origin and planet.destination == destination),
+               None)
     if val:
         return val.travel_time
     return 0
