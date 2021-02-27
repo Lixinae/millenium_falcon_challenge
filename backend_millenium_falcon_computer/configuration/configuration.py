@@ -83,9 +83,6 @@ class ConfigurationAppTest(ConfigurationApp):
 # Use for most cases
 config = ConfigurationApp()
 
-# Only use for testing purpose
-config_test = ConfigurationAppTest()
-
 
 class ConfigurationFlask:
     def __init__(self):
