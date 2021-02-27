@@ -2,12 +2,18 @@ import json
 from io import BytesIO
 from unittest import TestCase
 
+from flask import request, url_for
+
 from backend_millenium_falcon_computer import create_app
 
 
 class TestUploadFileApi(TestCase):
-    def test_get(self):
-        self.fail()
+    def test_get_ok(self):
+        with self.test_app:
+            self.test_app.get(self.api_route + "upload_and_compute",
+                              follow_redirects=True)
+            # check that the path changed
+            self.assertEqual(url_for('index_bp.index'), request.path)
 
     def test_post_data_ok(self):
         dict_data = {

@@ -9,4 +9,5 @@ api_bp = Blueprint('api_bp', __name__,
 
 api_bp_api = Api(api_bp, version="1.0", title="API", description="The API for the millenium falcon challenge app", prefix="/api")
 
+# Import ici pour eviter les imports circulaire
 from backend_millenium_falcon_computer.api import routes
