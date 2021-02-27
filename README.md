@@ -25,33 +25,33 @@ Hint: To avoid the Bounty Hunters, the Millenium Falcon can land on a planet wit
 
 The mathematical formula to compute the total probability of being captured is:
 
-![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-k.png)
+![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/formula-k.png)
 
 where k is the number of times the Bounty Hunter tried to capture the Millenium Falcon.
 
 For example, the probability to get captured is:
    - if the Millenium Falcon travels via 1 planet with bounty hunters:
   
-   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-90.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/formula-90.png)
    
    - if the Millenium Falcon travels via 1 planet with bounty hunters and refuels on this planet:
 
-   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-2.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/formula-2.png)
 
    - if the Millenium Falcon travels via 2 planets with bounty hunters:
 
-   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-2.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/formula-2.png)
 
    - if the Millenium Falcon travels via 3 planets with bounty hunters:
 
-   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/master/resources/readme_md/formula-3.png)
+   ![formula](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/formula-3.png)
 
 
 ## The mission
 
 Your mission is to create a web application to compute and display the odds that the Millenium Falcon reaches Endor in time and saves the galaxy.
 
-![Never tell me the odds](https://github.com/dataiku/millenium-falcon-challenge/blob/master/resources/readme_md/never-tell-me-the-odds.gif)
+![Never tell me the odds](https://github.com/Vahen/millenium_falcon_challenge/blob/main/resources/readme_md/never-tell-me-the-odds.gif)
 
 Your web application will be composed of a backend (the Millenium Falcon onboard computer), a front-end (C3PO) and a CLI (command-line interface aka R2D2).
 
