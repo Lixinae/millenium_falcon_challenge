@@ -1,11 +1,9 @@
-from flask import jsonify
 from sqlalchemy import Column, Integer, String
 from backend_millenium_falcon_computer.database import base
 
 
-# We should not need to put everything with primary keys, but since we have no ID or unique things,
-# SQL alchemy wants a primary key and it
-#
+# Idéalement on ne devrait qu'une clé primaire comme un ID ou autre
+# Ici les champs sur marqué en tant que clé primaire, sinon SQL alchemy rale
 class Routes(base):
     __tablename__ = "routes"
     origin = Column(String(128), primary_key=True)
@@ -20,7 +18,7 @@ class Routes(base):
         self.origin = origin
         self.destination = destination
         self.travel_time = travel_time
-    #
+
     def __repr__(self):
         return '{\norigin: \"' + self.origin + '\",\n' + \
                'destination: \"' + self.destination + '\",\n' + \
