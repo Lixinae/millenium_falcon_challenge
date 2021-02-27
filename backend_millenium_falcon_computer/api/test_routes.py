@@ -28,7 +28,6 @@ class TestUploadFileApi(TestCase):
             ]
         }
         input_json = json.dumps(dict_data, indent=4).encode("utf-8")
-        # Todo -> Terminer les test api
         data = {
             'file': (BytesIO(input_json), 'empire.json'),  # we use StringIO to simulate file object
         }
@@ -60,7 +59,6 @@ class TestUploadFileApi(TestCase):
             ]
         }
         input_json = json.dumps(dict_data, indent=4).encode("utf-8")
-
         data = {
             'file': (BytesIO(input_json), 'empire.txt'),  # we use StringIO to simulate file object
         }
