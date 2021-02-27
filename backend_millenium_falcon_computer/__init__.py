@@ -49,7 +49,10 @@ def create_app() -> Flask:
     secret = secrets.token_urlsafe(32)
     current_app.secret_key = secret
 
+    # Imperatif de faire l'init_db() après l'initialisation par le fichier de configuration
+    # si l'on veut des valeurs autre que celles par défaut
     init_db()
+
     jsglue = JSGlue()
     jsglue.init_app(current_app)
     return current_app
