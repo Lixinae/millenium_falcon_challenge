@@ -16,7 +16,11 @@
                               id="submit_file_and_comput_data_form"
                         >
                             <label class="label_empire_data"> Empire data File
-                                <input type="file" id="file" ref="file" v-on:change="handle_file_upload()" required/>
+                                <input type="file"
+                                       id="file"
+                                       ref="file"
+                                       accept=".json"
+                                       v-on:change="handle_file_upload()" required/>
                             </label>
                             <button :disabled="upload_disabled"
                                     type="submit"
