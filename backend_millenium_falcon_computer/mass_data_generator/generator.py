@@ -1,6 +1,6 @@
 import os
 
-from backend_millenium_falcon_computer.configuration.configuration import generated_data_dir, resource_dir
+from backend_millenium_falcon_computer.configuration.configuration import resource_dir
 
 
 def get_list_planets():

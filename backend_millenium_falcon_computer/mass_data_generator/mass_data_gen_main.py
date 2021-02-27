@@ -1,4 +1,3 @@
-import json
 import os
 
 from backend_millenium_falcon_computer import init_db
@@ -9,6 +8,9 @@ from backend_millenium_falcon_computer.mass_data_generator.planets_data_generato
     export_list_to_db
 
 if __name__ == '__main__':
+    """
+    Main de test pour généré un jeu de de données plus conséquent que celui de base
+    """
 
     generate_planets_parameters = {
         "number_planets": 60,
@@ -17,7 +19,9 @@ if __name__ == '__main__':
         "min_travel_time": 1,
         "max_travel_time": 6
     }
-    generated_falcon = generate_falcon_data(5, 10, generate_planets_parameters["number_planets"])
+    min_autonomy = 5
+    max_autonomy = 10
+    generated_falcon = generate_falcon_data(min_autonomy, max_autonomy, generate_planets_parameters["number_planets"])
     generated_planets = generate_planets_data(generate_planets_parameters)
 
     millenium_json_config_file = os.path.join(generated_data_dir, "millenium-falcon.json")

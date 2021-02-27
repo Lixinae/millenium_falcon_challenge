@@ -14,7 +14,7 @@ def generate_p_data(generate_planets_parameters: Dict) -> List:
     """
     Generate la liste des planetes au format json
     :param generate_planets_parameters: Dictionnaire avec toutes les informations de paramétrage
-    :return:
+    :return: La list json des planètes
     """
     planets_list = get_list_planets()
     planets_list_json = []
@@ -73,6 +73,13 @@ def generate_p_data(generate_planets_parameters: Dict) -> List:
 def generate_planets_data(generate_planets_parameters: Dict,
                           save_to_file: bool = True,
                           filename: str = "planets_json.json") -> List:
+    """
+    Génère les données pour les planètes
+    :param generate_planets_parameters:
+    :param save_to_file: Indique si l'on veut ou non sauvegarder le fichier json, true par defaut
+    :param filename: Le nom du fichier à sauvegarder
+    :return: La liste des planètes généré
+    """
     planets_list = generate_p_data(generate_planets_parameters)
 
     if save_to_file:
@@ -96,6 +103,10 @@ def save_list_json_to_file(planets_list: List, filename: str) -> None:
 
 
 def export_list_to_db(planets_list: List) -> None:
+    """
+    Exporte la liste "planets_list" dans la BDD
+    :param planets_list: La liste des planètes à exporter dans la BDD
+    """
     from backend_millenium_falcon_computer.database.models import Routes
 
     session = Session()

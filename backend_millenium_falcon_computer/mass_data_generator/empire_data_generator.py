@@ -12,9 +12,9 @@ from backend_millenium_falcon_computer.mass_data_generator.generator import get_
 ####################################
 def generate_e_data(numb_of_bounty_hunters: int) -> json:
     """
-
-    :param numb_of_bounty_hunters:
-    :return:
+    Génère les données de l'empire
+    :param numb_of_bounty_hunters: Nombre de chasseur de primes que l'on veut dans le système
+    :return: Le json de l'empire avec toutes les informations
     """
     planets = get_list_planets()
     min_coutdown = int(len(planets)/5)
@@ -24,15 +24,14 @@ def generate_e_data(numb_of_bounty_hunters: int) -> json:
         "countdown": countdown,
         "bounty_hunters": []
     }
-    numb_of_bounty_hunters = numb_of_bounty_hunters * len(planets)
     for i in range(0, numb_of_bounty_hunters):
-        bh = {
+        bounty_hunter = {
             "planet": random.choice(planets),
             "day": random.randint(1, countdown - 1)
         }
         # Pour eviter les doublons
-        if bh not in empire_data["bounty_hunters"]:
-            empire_data["bounty_hunters"].append(bh)
+        if bounty_hunter not in empire_data["bounty_hunters"]:
+            empire_data["bounty_hunters"].append(bounty_hunter)
     return empire_data
 
 
@@ -40,7 +39,7 @@ def generate_empire_data(numb_of_bounty_hunters: int,
                          save_to_file: bool = True,
                          filename: str = "empire.json") -> Dict:
     """
-
+    Génère les données de l'empire et les sauvegarde dans le fichier "empire.json" dans le dossier "generated_data"
     :param filename: Nom du fichier de sauvegarde
     :param numb_of_bounty_hunters:
     :param save_to_file: Indique si l'on veut sauvegarder les données dans un fichier ou non
